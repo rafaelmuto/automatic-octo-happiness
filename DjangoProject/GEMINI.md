@@ -18,6 +18,8 @@ Sophia is meant to run in small single board computers (SBC), like Raspberry Pi,
 
 The main way you can interact with Sophia is through the web interface, running in the local network. There you can register new entries and the relevant data like title, author, year of publication, ISBN, image ant etc.
 
+    Sophia is the Greek word for "wisdom." It's a simple, beautiful, and direct name that gets straight to the core purpose of a library.
+
 ## Getting Started
 
 ### Prerequisites
