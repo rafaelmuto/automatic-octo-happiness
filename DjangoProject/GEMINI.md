@@ -8,7 +8,7 @@ This file provides context for the Gemini agent to understand and work with this
 *   **Description:** (A brief, one-sentence description of the project)
 *   **Python Version:** 3.10.12
 *   **Web Framework:** Django 5.2.4
-*   **Database:** MongoDB
+*   **Database:** SQLite
 
 Sophia is a project to help manage private libraries. Helping you to categorise and find books, magazines and documents, known as Entries.
 You can register entries with all relavant metadata to help you categorise and find what you are looking for.
