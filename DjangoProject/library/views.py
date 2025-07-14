@@ -23,3 +23,5 @@ class IndexByAuthorView(generic.ListView):
         """
         author_id = self.kwargs.get("author_id")
         return Book.objects.filter(author_id=author_id)
+
+        
