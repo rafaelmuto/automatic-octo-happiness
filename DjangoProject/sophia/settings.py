@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'library.apps.LibraryConfig',  # Ensure the library app is included here
     'polls.apps.PollsConfig',  # Ensure the polls app is included here
 ]
 
