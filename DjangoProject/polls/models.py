@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
 
 
 # Create your models here.
@@ -13,6 +14,7 @@ class Question(models.Model):
     def __rpepr__(self):
         return f"Question({self.question_text}, {self.pub_date})"
 
+    @admin.display(boolean=True, ordering='pub_date', description='Published recently?')
     def was_published_recently(self):
         now = timezone.now()
         return now - timezone.timedelta(days=1) <= self.pub_date <= now

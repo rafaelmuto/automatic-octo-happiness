@@ -5,7 +5,7 @@ This file provides context for the Gemini agent to understand and work with this
 ## Project Overview
 
 *   **Project Name:** sohia
-*   **Description:** (A brief, one-sentence description of the project)
+*   **Description:** Sophia is a project to help manage private libraries.
 *   **Python Version:** 3.10.12
 *   **Web Framework:** Django 5.2.4
 *   **Database:** SQLite
@@ -35,7 +35,7 @@ The main way you can interact with Sophia is through the web interface, running 
     ```
 2.  **Create and activate a virtual environment:**
     ```bash
-    python -m venv venv
+    python -m venv .venv
     source venv/bin/activate
     ```
 3.  **Install dependencies:**
