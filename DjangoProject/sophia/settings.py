@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'library.apps.LibraryConfig',  # Ensure the library app is included here
-    'polls.apps.PollsConfig',  # Ensure the polls app is included here
     'debug_toolbar',  # Include the debug toolbar app
     'django.contrib.admin',
     'django.contrib.auth',
