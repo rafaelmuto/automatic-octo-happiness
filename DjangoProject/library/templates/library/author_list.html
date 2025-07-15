@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+
+{% block title %}Authors List{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Authors List</h1>
+    <hr>
+    <br>
+    <ul>
+        {% for author in author_list %}
+        <li>
+            <p><strong><a href="{% url 'library:author_detail' author.id %}">{{ author.name }}</a></strong>  [{{ author.birth_date|date:"d-m-Y" }}~{{ author.death_date|date:"d-m-Y" }}]</p>
+        </li>
+        {% empty %}
+        <li>No authors available.</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}

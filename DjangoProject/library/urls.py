@@ -11,4 +11,6 @@ urlpatterns = [
         views.IndexByAuthorView.as_view(),
         name="index_by_author",
     ),
+    path("authors/", views.AuthorList.as_view(), name="author_list"),
+    path("authors/<int:pk>/", views.AuthorDetail.as_view(), name="author_detail"),
 ]

@@ -1,0 +1,23 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+    <h1>Author Details</h1>
+
+    <h2>{{ author.name }}</h2>
+    <p>Birth Date: {{ author.birth_date|default:"N/A" }}</p>
+    <p>Death Date: {{ author.death_date|default:"N/A" }}</p>
+    <p>Country: {{ author.country|default:"N/A" }}</p>
+
+    <h3>Books by {{ author.name }}</h3>
+    {% if author.book_set.all %}
+        <ul>
+            {% for book in author.book_set.all %}
+                <li><a href="{% url 'library:book_detail' book.id %}">{{ book.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books found for this author.</p>
+    {% endif %}
+
+    <p><a href="{% url 'library:author_list' %}">Back to Author List</a></p>
+{% endblock %}

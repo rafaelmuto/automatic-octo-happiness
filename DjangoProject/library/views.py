@@ -1,7 +1,7 @@
 from django.views import generic
 
 
-from .models import Book
+from .models import Author, Book
 
 
 class IndexView(generic.ListView):
@@ -25,3 +25,19 @@ class IndexByAuthorView(generic.ListView):
         """
         author_id = self.kwargs.get("author_id")
         return Book.objects.filter(author_id=author_id)
+
+
+class AuthorList(generic.ListView):
+    model = Author
+    context_object_name = "author_list"
+
+    def get_queryset(self):
+        """
+        Return the list of authors.
+        """
+        return Author.objects.all()
+
+
+class AuthorDetail(generic.DetailView):
+    model = Author
+    context_object_name = "author"
