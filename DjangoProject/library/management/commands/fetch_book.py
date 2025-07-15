@@ -16,7 +16,14 @@ class Command(BaseCommand):
         isbn = options["isbn"]
         self.stdout.write(self.style.NOTICE(f"Fetching book data for ISBN: {isbn}"))
 
-        # Step 1: Fetch book data from OpenLibrary
+        # Check if the book already exists
+        if Book.objects.filter(isbn=isbn).exists():
+            self.stdout.write(
+                self.style.SUCCESS(f"Book with ISBN {isbn} already exists.")
+            )
+            return
+
+        # Fetch book data from OpenLibrary
         book_data = OpenLibraryService.search_by_isbn(isbn)
         if not book_data:
             raise CommandError(f"No book found with ISBN: {isbn}")
@@ -40,21 +47,23 @@ class Command(BaseCommand):
         if not open_library_key:
             raise CommandError("Could not find an OpenLibrary key for the book.")
 
-        # Step 2: Check if the book already exists
-        if Book.objects.filter(isbn=isbn).exists():
+        # Check if the book with the same OpenLibrary key already exists
+        if Book.objects.filter(open_library_key=open_library_key).exists():
             self.stdout.write(
-                self.style.SUCCESS(f"Book with ISBN {isbn} already exists.")
+                self.style.SUCCESS(
+                    f"Book with OpenLibrary key {open_library_key} already exists."
+                )
             )
             return
 
-        # Step 3: Fetch detailed book data using the OpenLibrary key
+        # Fetch detailed book data using the OpenLibrary key
         detailed_book_data = OpenLibraryService.get_data_by_key(open_library_key)
         if not detailed_book_data:
             raise CommandError(
                 f"Could not fetch detailed book data for key: {open_library_key}"
             )
 
-        # Step 4: Handle the author
+        # Handle the author
         try:
             author = Author.objects.get(open_library_key=author_key)
             self.stdout.write(
@@ -91,7 +100,7 @@ class Command(BaseCommand):
                 self.style.SUCCESS(f"Successfully created author: {author.name}")
             )
 
-        # Step 5: Create the book
+        # Create the book
         publish_date_str = detailed_book_data.get("publish_date")
         if not publish_date_str:
             # Fallback to the publish_date from the initial search

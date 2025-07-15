@@ -66,8 +66,8 @@ The main way you can interact with Sophia is through the web interface, running 
 
 ### Coding Style
 
-*   **Linter:** (e.g., Ruff, Flake8, Pylint)
-*   **Formatter:** (e.g., Black, isort)
+*   **Linter:** Ruff
+*   **Formatter:** Black
 *   **Command to run linter/formatter:**
     ```bash
     # Example

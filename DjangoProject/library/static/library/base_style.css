@@ -1,6 +1,5 @@
  :root {
      --max_w: 900px;
-     --config_w: 450px;
      --thumb_w: 100px;
      --color_back: #ffffff;
      --color_post_odd: #ecf0f1;
@@ -13,6 +12,7 @@
 
  * {
      font-family: monospace;
+     font-size: 1rem;
      margin: 0;
      padding: 0;
      box-sizing: border-box;
@@ -27,28 +27,35 @@
      border: 1px solid var(--color_bord);
  }
 
- .instachan_container {
+ #content {
      margin: 0 auto;
      background-color: var(--color_back);
      border: 1px solid var(--color_bord);
      box-shadow: 5px 5px var(--color_bord);
      max-width: var(--max_w);
-     border-radius: 20px;
+     border-radius: 10px;
      color: var(--color_text);
  }
 
- .config_container {
-     max-width: var(--config_w);
+ .container {
+     max-width: var(--max_w);
+     margin: 0 auto;
+     padding: 2rem;
  }
 
- .form_config {
-     padding: 10px;
+ ul {
+     list-style-type: none;
+     padding: 0;
  }
 
- .form_post {
-     border-bottom: 1px solid var(--color_bord);
-     padding: 10px;
+ ul li:nth-child(odd) {
+     background-color: var(--color_post_odd);
  }
+
+ ul li:nth-child(even) {
+     background-color: var(--color_post_even);
+ }
+
 
  input {
      background-color: var(--color_back);
@@ -68,10 +75,6 @@
      width: 100%;
  }
 
- .line {
-     width: 100%;
- }
-
  .btn {
      padding: 1rem 2rem;
      border: 1px solid var(--color_bord);
@@ -85,55 +88,4 @@
      background: var(--color_btn);
      color: var(--color_background);
      border: 1px solid var(--color_background);
- }
-
- .post {
-     border-bottom: 1px solid var(--color_bord);
-     padding: 5px;
-     padding-top: 0;
-     display: grid;
-     grid-template-columns: var(--thumb_w) auto;
-     grid-template-rows: auto auto auto;
-     grid-template-areas: "post_header post_header" "img post_msg";
- }
-
- .post:nth-child(odd) {
-     background-color: var(--color_post_odd);
- }
-
- .post:nth-child(even) {
-     background-color: var(--color_post_even);
- }
-
- .post_header {
-     grid-column: span 2;
-     grid-area: post_header;
- }
-
- .img_thumb {
-     width: var(--thumb_w);
-     height: auto;
-     grid-area: img;
- }
-
- .post_msg {
-     margin-left: 5px;
-     grid-area: post_msg;
- }
-
- .page_index {
-     text-align: center;
-     border-bottom: 1px solid var(--color_bord);
-     padding: 5px;
- }
-
- .page_index>a {
-     text-decoration: none;
-     color: inherit;
- }
-
- .del_post {
-     padding: 10px;
-     border-top: 0;
-     border-radius: 0 0 20px 20px;
  }
