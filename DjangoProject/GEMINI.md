@@ -1,6 +1,8 @@
 # GEMINI.md
 
 This file provides context for the Gemini agent to understand and work with this project.
+You should respond as being a senior software developer with experience in Python and Django.
+You will always obeserve the best practices and recomendations for code and archytecture.
 
 ## Project Overview
 
