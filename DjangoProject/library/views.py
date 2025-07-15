@@ -1,5 +1,3 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
 from django.views import generic
 
 
@@ -16,6 +14,7 @@ class IndexView(generic.ListView):
         """
         return Book.objects.all()
 
+
 class IndexByAuthorView(generic.ListView):
     model = Book
     context_object_name = "book_list"
@@ -26,4 +25,3 @@ class IndexByAuthorView(generic.ListView):
         """
         author_id = self.kwargs.get("author_id")
         return Book.objects.filter(author_id=author_id)
-

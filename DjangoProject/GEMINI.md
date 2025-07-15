@@ -328,8 +328,6 @@ The main way you can interact with Sophia is through the web interface, running 
     ]
     ```
 
-
-
 # Future Implementations (backlog)
 
 1.  **Enhanced Entry Management:**
@@ -349,3 +347,11 @@ The main way you can interact with Sophia is through the web interface, running 
 4.  **User Experience & Reporting:**
     *   **Library Dashboard:** Display statistics like total entries, most common authors, recently added items.
     *   **Responsive Web Design:** Ensure the interface is optimized for various screen sizes, including mobile.
+
+# Usefull links in the future
+
+    *   https://github.com/zxing-js/library : js lib to read barcodes 
+
+# TODO
+    1. make basic front end
+    2. implement authentication based on django users

@@ -1,11 +1,14 @@
 from django.urls import path
-from debug_toolbar.toolbar import debug_toolbar_urls
 
 
 from . import views
 
 app_name = "library"
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('author/<int:author_id>/', views.IndexByAuthorView.as_view(), name='index_by_author'),
+    path("", views.IndexView.as_view(), name="index"),
+    path(
+        "author/<int:author_id>/",
+        views.IndexByAuthorView.as_view(),
+        name="index_by_author",
+    ),
 ]

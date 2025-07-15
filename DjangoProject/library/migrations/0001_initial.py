@@ -8,37 +8,70 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Author',
+            name="Author",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('birth_date', models.DateField(null=True)),
-                ('nationality', models.CharField(max_length=100, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("birth_date", models.DateField(null=True)),
+                ("nationality", models.CharField(max_length=100, null=True)),
             ],
         ),
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('publish_date', models.DateField(null=True)),
-                ('publisher', models.CharField(max_length=100, null=True)),
-                ('isbn', models.CharField(max_length=13, null=True, unique=True)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='library.author')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=200)),
+                ("publish_date", models.DateField(null=True)),
+                ("publisher", models.CharField(max_length=100, null=True)),
+                ("isbn", models.CharField(max_length=13, null=True, unique=True)),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="library.author"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='BookMark',
+            name="BookMark",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('page_number', models.IntegerField()),
-                ('note', models.TextField(blank=True, null=True)),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='library.book')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("page_number", models.IntegerField()),
+                ("note", models.TextField(blank=True, null=True)),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="library.book"
+                    ),
+                ),
             ],
         ),
     ]

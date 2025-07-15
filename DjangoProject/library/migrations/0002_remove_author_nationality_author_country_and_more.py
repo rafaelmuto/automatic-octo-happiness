@@ -6,37 +6,37 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('library', '0001_initial'),
+        ("library", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='author',
-            name='nationality',
+            model_name="author",
+            name="nationality",
         ),
         migrations.AddField(
-            model_name='author',
-            name='country',
+            model_name="author",
+            name="country",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='author',
-            name='death_date',
+            model_name="author",
+            name="death_date",
             field=models.DateField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='author',
-            name='open_library_key',
+            model_name="author",
+            name="open_library_key",
             field=models.CharField(max_length=50, null=True, unique=True),
         ),
         migrations.AddField(
-            model_name='book',
-            name='number_of_pages',
+            model_name="book",
+            name="number_of_pages",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='book',
-            name='open_library_key',
+            model_name="book",
+            name="open_library_key",
             field=models.CharField(max_length=50, null=True, unique=True),
         ),
     ]

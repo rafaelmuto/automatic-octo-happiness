@@ -1,5 +1,6 @@
 import requests
 
+
 class OpenLibraryService:
     BASE_URL = "https://openlibrary.org"
     COVERS_URL = "https://covers.openlibrary.org"
@@ -10,11 +11,7 @@ class OpenLibraryService:
         Searches for a book by its ISBN using the OpenLibrary API.
         """
         endpoint = f"{OpenLibraryService.BASE_URL}/api/books"
-        params = {
-            "bibkeys": f"ISBN:{isbn}",
-            "format": "json",
-            "jscmd": "data"
-        }
+        params = {"bibkeys": f"ISBN:{isbn}", "format": "json", "jscmd": "data"}
         try:
             response = requests.get(endpoint, params=params)
             response.raise_for_status()  # Raise an HTTPError for bad responses
@@ -40,7 +37,7 @@ class OpenLibraryService:
             return None
 
     @staticmethod
-    def get_book_cover_url(key_type: str, key_value: str, size: str = 'M') -> str:
+    def get_book_cover_url(key_type: str, key_value: str, size: str = "M") -> str:
         """
         Constructs the URL for a book cover image.
         key_type: 'isbn', 'olid', 'lccn', etc.
@@ -49,7 +46,7 @@ class OpenLibraryService:
         return f"{OpenLibraryService.COVERS_URL}/b/{key_type}/{key_value}-{size}.jpg"
 
     @staticmethod
-    def get_author_photo_url(author_olid: str, size: str = 'M') -> str:
+    def get_author_photo_url(author_olid: str, size: str = "M") -> str:
         """
         Constructs the URL for an author's photo.
         size: 'S', 'M', or 'L'

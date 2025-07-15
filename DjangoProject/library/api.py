@@ -6,9 +6,11 @@ from .serializers import BookSerializer
 
 from .services import OpenLibraryService
 
+
 class BookListAPIView(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
 
 def search_by_isbn_view(request, isbn):
     book_data = OpenLibraryService.search_by_isbn(isbn)
@@ -16,6 +18,7 @@ def search_by_isbn_view(request, isbn):
         return JsonResponse(book_data)
     else:
         return JsonResponse({"error": "Book not found"}, status=404)
+
 
 def get_data_by_key_view(request, key):
     data = OpenLibraryService.get_data_by_key(f"/{key.replace('-', '/')}")
