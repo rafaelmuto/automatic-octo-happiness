@@ -102,3 +102,73 @@ The main way you can interact with Sophia is through the web interface, running 
 *   List any other useful commands for managing the project.
     *   `python manage.py makemigrations`: To create new database migrations.
     *   `python manage.py shell`: To open the Django shell.
+
+### Tasks
+
+## 1. API Implementation
+
+**Step 1: Install and Configure DRF**
+
+*   **Install:** `pip install djangorestframework`
+*   **Configure:** Add `'rest_framework'` to your `INSTALLED_APPS` in `sophia/settings.py`.
+
+**Step 2: Create a Serializer**
+
+*   **File:** `library/serializers.py`
+*   **Code:**
+    ```python
+    from rest_framework import serializers
+    from .models import Book, Author
+
+    class AuthorSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Author
+            fields = ['id', 'name', 'birth_date']
+
+    class BookSerializer(serializers.ModelSerializer):
+        author = AuthorSerializer(read_only=True)
+
+        class Meta:
+            model = Book
+            fields = ['id', 'title', 'author', 'published_date', 'isbn']
+    ```
+
+**Step 3: Create an API View**
+
+*   **File:** `library/api.py`
+*   **Code:**
+    ```python
+    from rest_framework import generics
+    from .models import Book
+    from .serializers import BookSerializer
+
+    class BookListAPIView(generics.ListAPIView):
+        queryset = Book.objects.all()
+        serializer_class = BookSerializer
+    ```
+
+**Step 4: Define API URLs**
+
+*   **Create a new file:** `library/api_urls.py`
+*   **Code:**
+    ```python
+    from django.urls import path
+    from . import api
+
+    urlpatterns = [
+        path('books/', api.BookListAPIView.as_view(), name='book-list'),
+    ]
+    ```
+
+**Step 5: Include API URLs in the Main Project**
+
+*   **File:** `sophia/urls.py`
+*   **Modification:**
+    ```python
+    # In sophia/urls.py
+
+    urlpatterns = [
+        # ... existing urls
+        path('api/library/', include('library.api_urls')), # Add this line
+    ]
+    ```
