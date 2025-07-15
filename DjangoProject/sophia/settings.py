@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'library.apps.LibraryConfig',  # Ensure the library app is included here
     'debug_toolbar',  # Include the debug toolbar app
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -110,7 +110,7 @@ The main way you can interact with Sophia is through the web interface, running 
 
 # Tasks
 
-## 1. API Implementation
+## 1. API Implementation [DONE]
 
 **Step 1: Install and Configure DRF**
 
