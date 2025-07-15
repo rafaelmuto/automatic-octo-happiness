@@ -77,21 +77,21 @@ The main way you can interact with Sophia is through the web interface, running 
 
 ### Testing
 
-*   **Testing Framework:** (e.g., pytest, unittest)
+*   **Testing Framework:** (unittest)
 *   **How to run tests:**
     ```bash
-    # Example
-    pytest
+    python manage.py test
     ```
-*   **Location of tests:** (e.g., `tests/` directory, alongside the code)
+*   **Location of tests:** `tests.py`
 
 ### Project Structure
 
 *   Briefly describe the purpose of the main directories and files.
-    *   `myproject/`: Contains the main Django project settings.
-    *   `app/`: A sample Django app.
-    *   `static/`: For static files (CSS, JavaScript, images).
-    *   `templates/`: For Django templates.
+    *   `sophia/`: Contains the main Django project settings.
+    *   `library/`: main django app domain.
+    *   `library/templates/library`: For Django templates.
+    *   `library/models`: library models
+    *   `library/migrations`: library migration files
     *   `manage.py`: Django's command-line utility.
 
 ## Deployment
@@ -103,7 +103,10 @@ The main way you can interact with Sophia is through the web interface, running 
 
 *   List any other useful commands for managing the project.
     *   `python manage.py makemigrations`: To create new database migrations.
+    *   `python manage.py migrate`: Run all migrations.
+    *   `python manage.py collectstatic`: Collect static files
     *   `python manage.py shell`: To open the Django shell.
+    *   `python manage.py test`: Run all unit tests.
 
 # Tasks
 
@@ -175,7 +178,7 @@ The main way you can interact with Sophia is through the web interface, running 
     ]
     ```
 
-## 2. Implement .env for Configurations
+## 2. Implement .env for Configurations [DONE]
 
 **Step 1: Install `python-dotenv`**
 
@@ -216,7 +219,7 @@ The main way you can interact with Sophia is through the web interface, running 
     .env
     ```
 
-## 3. Implementing OpenLibraryService
+## 3. Implementing OpenLibraryService [REJECTED]
 
 **Step 1: Install the `requests` library**
 
