@@ -49,6 +49,14 @@
  }
 
 
+ a:link {
+     color: black;
+ }
+
+ a:visited {
+     color: gray;
+ }
+
  ul {
      list-style-type: none;
      padding: 0;
