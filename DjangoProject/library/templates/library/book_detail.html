@@ -1,0 +1,20 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <h1>Book Details</h1>
+    <hr>
+    <br>
+
+    <h2>{{ book.title }}</h2>
+    <p>Author: <a href="{% url 'library:author_detail' book.author.id %}">{{ book.author.name }}</a></p>
+    <p>Published Date: {{ book.publish_date.year|default:"N/A" }}</p>
+    <p>Publisher: {{ book.publisher|default:"N/A" }}</p>
+    <p>Number of Pages: {{ book.number_of_pages|default:"N/A" }}</p>
+    <p>ISBN: {{ book.isbn|default:"N/A" }}</p>
+
+    <br>
+    <hr>
+    <p><a href="{% url 'library:index' %}">Back to Book List</a></p>
+{% endblock %}

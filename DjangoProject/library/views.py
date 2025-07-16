@@ -41,3 +41,8 @@ class AuthorList(generic.ListView):
 class AuthorDetail(generic.DetailView):
     model = Author
     context_object_name = "author"
+
+
+class BookDetail(generic.DetailView):
+    model = Book
+    context_object_name = "book"
