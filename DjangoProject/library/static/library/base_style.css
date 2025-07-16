@@ -66,10 +66,11 @@
  }
 
  .delete-link {
-     color: var(--color_delete);
+     color: var(--color_delete) !important;
  }
 
  ul {
+
      list-style-type: none;
      padding: 0;
  }
