@@ -8,6 +8,7 @@
      --color_bord: #7f8c8d;
      --color_background: #ffffff;
      --color_text: #000000;
+     --color_delete: #e74c3c;
  }
 
  * {
@@ -62,6 +63,10 @@
 
  a:visited {
      color: rgb(43, 43, 43);
+ }
+
+ .delete-link {
+     color: var(--color_delete);
  }
 
  ul {

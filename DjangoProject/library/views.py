@@ -34,6 +34,18 @@ class BookUpdate(generic.UpdateView):
     success_url = reverse_lazy("library:index")
 
 
+class AuthorDelete(generic.DeleteView):
+    model = Author
+    template_name = "library/author_confirm_delete.html"
+    success_url = reverse_lazy("library:author_list")
+
+
+class BookDelete(generic.DeleteView):
+    model = Book
+    template_name = "library/book_confirm_delete.html"
+    success_url = reverse_lazy("library:index")
+
+
 class BookListView(generic.ListView):
     model = Book
     context_object_name = "book_list"
