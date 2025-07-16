@@ -19,7 +19,7 @@
         <li>
             <strong><a href="{% url 'library:author_detail' author.id %}">{{ author.name }}</a>
             </strong>  [{{ author.birth_date|date:"d-m-Y" }}~{{ author.death_date|date:"d-m-Y" }}]
-            <span style="float: right;">
+            <span class="align-right">
                 <a href="{% url 'library:author_edit' author.id %}">[Edit]</a> 
                 <a href="{% url 'library:author_delete' author.id %}" class="delete-link">[Delete]</a>
             </span>

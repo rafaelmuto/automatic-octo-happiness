@@ -56,6 +56,9 @@
      max-width: var(--max_w);
  }
 
+ .align-right {
+     float: right;
+ }
 
  a:link {
      color: black;

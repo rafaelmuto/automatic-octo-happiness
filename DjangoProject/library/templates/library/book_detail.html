@@ -3,8 +3,15 @@
 {% block content %}
 <div class="container">
 
-    <h1>Book Details</h1>
+    <div class="container_header">
+        <h1>Book Details</h1>
+        <span class="align-right">
+            <a href="{% url 'library:book_edit' book.id %}" class="btn">Edit Book</a>
+            <a href="{% url 'library:book_delete' book.id %}" class="btn">Delete Book</a>
+        </span>
+    </div>
     <hr>
+
     <br>
 
     <h2>{{ book.title }}</h2>

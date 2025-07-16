@@ -2,8 +2,16 @@
 
 {% block content %}
 <div class="container">
-    <h1>Author Details</h1>
+    <div class="container_header">
+        <h1>Author Details</h1>
+        <span class="align-right">
+            <a href="{% url 'library:author_edit' author.id %}" class="btn">Edit Author</a>
+            <a href="{% url 'library:author_delete' author.id %}" class="btn">Delete Author</a>
+        </span>
+    </div>
     <hr>
+
+    <br>
 
     <h2>{{ author.name }}</h2>
     <p>Birth Date: {{ author.birth_date|default:"N/A" }}</p>
