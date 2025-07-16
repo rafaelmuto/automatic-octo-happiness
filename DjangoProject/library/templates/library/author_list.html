@@ -6,9 +6,14 @@
 
 <div class="container">
 
-    <h1>Authors List</h1>
+    <div class="container_header">
+        <h1>Authors List</h1>
+        <a href="{% url 'library:author_add' %}" class="btn">Add Author</a>
+    </div>
+
     <hr>
     <br>
+    
     <ul>
         {% for author in author_list %}
         <li>

@@ -34,7 +34,7 @@ class BookUpdate(generic.UpdateView):
     success_url = reverse_lazy("library:index")
 
 
-class IndexView(generic.ListView):
+class BookListView(generic.ListView):
     model = Book
     context_object_name = "book_list"
 
@@ -45,7 +45,7 @@ class IndexView(generic.ListView):
         return Book.objects.all()
 
 
-class IndexByAuthorView(generic.ListView):
+class BookListByAuthorView(generic.ListView):
     model = Book
     context_object_name = "book_list"
 
