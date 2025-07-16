@@ -67,12 +67,12 @@ The main way you can interact with Sophia is through the web interface, running 
 ### Coding Style
 
 *   **Linter:** Ruff
-*   **Formatter:** Black
+<!-- *   **Formatter:** Black -->
 *   **Command to run linter/formatter:**
     ```bash
     # Example
     ruff check .
-    black .
+    <!-- black . -->
     ```
 
 ### Testing

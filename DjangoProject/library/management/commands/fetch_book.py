@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
+from datetime import datetime
+
+
 from library.models import Author, Book
 from library.services import OpenLibraryService
-from datetime import datetime
 
 
 class Command(BaseCommand):
