@@ -71,7 +71,7 @@ def data_management(request):
                         'birth_date': author_birth_date,
                         'death_date': author_death_date,
                         'country': author_country,
-                        'open_library_key': author_open_library_key
+                        'olid': author_open_library_key
                     }
                 )
 
@@ -80,7 +80,7 @@ def data_management(request):
                     defaults={
                         'title': row[0],
                         'publish_date': row[1] if row[1] else None,
-                        'open_library_key': row[3],
+                        'olid': row[3],
                         'author': author,
                     }
                 )
