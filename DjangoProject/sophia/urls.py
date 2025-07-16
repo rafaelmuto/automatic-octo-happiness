@@ -23,6 +23,7 @@ urlpatterns = [
     path("library/", include("library.urls"), name="library"),
     path("api/library/", include("library.api_urls")),
     path("admin/", admin.site.urls),
+    path("accounts/", include("django.contrib.auth.urls"))
 ]
 
 if settings.DEBUG:

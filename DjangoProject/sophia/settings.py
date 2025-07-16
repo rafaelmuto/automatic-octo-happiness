@@ -135,3 +135,6 @@ INTERNAL_IPS = [
     "127.0.0.1",
     "localhost",
 ]
+
+LOGIN_REDIRECT_URL = "/library"
+LOGOUT_REDIRECT_URL = "/library"

@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -6,32 +7,32 @@ from library.models import Book
 from library.forms import BookForm
 
 
-class BookDetail(generic.DetailView):
+class BookDetail(LoginRequiredMixin, generic.DetailView):
     model = Book
     context_object_name = "book"
 
 
-class BookCreate(generic.CreateView):
+class BookCreate(LoginRequiredMixin, generic.CreateView):
     model = Book
     form_class = BookForm
     template_name = "library/book_form.html"
     success_url = reverse_lazy("library:index")
 
 
-class BookUpdate(generic.UpdateView):
+class BookUpdate(LoginRequiredMixin, generic.UpdateView):
     model = Book
     form_class = BookForm
     template_name = "library/book_form.html"
     success_url = reverse_lazy("library:index")
 
 
-class BookDelete(generic.DeleteView):
+class BookDelete(LoginRequiredMixin, generic.DeleteView):
     model = Book
     template_name = "library/book_confirm_delete.html"
     success_url = reverse_lazy("library:index")
 
 
-class BookListView(generic.ListView):
+class BookListView(LoginRequiredMixin, generic.ListView):
     model = Book
     context_object_name = "book_list"
 
@@ -42,7 +43,7 @@ class BookListView(generic.ListView):
         return Book.objects.all()
 
 
-class BookListByAuthorView(generic.ListView):
+class BookListByAuthorView(LoginRequiredMixin, generic.ListView):
     model = Book
     context_object_name = "book_list"
 

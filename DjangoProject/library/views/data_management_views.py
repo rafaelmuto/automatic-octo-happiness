@@ -7,6 +7,9 @@ from django.contrib import messages
 from library.models import Book, Author
 
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def data_management(request):
     
     if request.method == 'GET' and 'export' in request.GET:
