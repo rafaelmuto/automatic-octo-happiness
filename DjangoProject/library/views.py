@@ -1,7 +1,37 @@
+from django.urls import reverse_lazy
 from django.views import generic
 
 
+from .forms import AuthorForm, BookForm
 from .models import Author, Book
+
+
+class AuthorCreate(generic.CreateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = "library/author_form.html"
+    success_url = reverse_lazy("library:author_list")
+
+
+class AuthorUpdate(generic.UpdateView):
+    model = Author
+    form_class = AuthorForm
+    template_name = "library/author_form.html"
+    success_url = reverse_lazy("library:author_list")
+
+
+class BookCreate(generic.CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = "library/book_form.html"
+    success_url = reverse_lazy("library:index")
+
+
+class BookUpdate(generic.UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = "library/book_form.html"
+    success_url = reverse_lazy("library:index")
 
 
 class IndexView(generic.ListView):
