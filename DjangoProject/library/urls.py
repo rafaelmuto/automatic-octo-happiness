@@ -17,4 +17,5 @@ urlpatterns = [
     path("books/<int:pk>/edit/", library.views.BookUpdate.as_view(), name="book_edit"),
     path("authors/<int:pk>/delete/", library.views.AuthorDelete.as_view(), name="author_delete"),
     path("books/<int:pk>/delete/", library.views.BookDelete.as_view(), name="book_delete"),
+    path("data/", library.views.data_management, name="data_management"),
 ]

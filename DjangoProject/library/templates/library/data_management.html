@@ -1,0 +1,50 @@
+{% extends "./base.html" %}
+
+{% block title %}Data Management{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Import / Export CSV Data</h1>
+    <hr>
+    <br>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Export Data</h2>
+            <p>Export all books to a CSV file.</p>
+            <form method="get">
+                {% csrf_token %}
+                <button type="submit" name="export" class="btn btn-primary">Export Books</button>
+            </form>
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
+        <div class="col-md-6">
+            <h2>Import Data</h2>
+            <p>Import books or authors from a CSV file.</p>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="file" name="csv_file" accept=".csv" class="form-control-file">
+                </div>
+                <button type="submit" name="import" class="btn btn-success">Import</button>
+            </form>
+        </div>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</div>
+
+{% endblock %}
