@@ -17,7 +17,7 @@ class Book(models.Model):
 
     def __str__(self):
         return (
-            f"Book({self.title}, {self.author}, {self.publish_date} - ISBN:{self.isbn})"
+            f"{self.title}, {self.author}, {self.publish_date} - ISBN:{self.isbn}"
         )
 
     def __repr__(self):

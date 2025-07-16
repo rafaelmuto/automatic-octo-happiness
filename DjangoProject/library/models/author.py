@@ -25,7 +25,7 @@ class Author(models.Model):
         return False
 
     def __str__(self):
-        return f"Author({self.name}, {self.birth_date})"
-
+        return self.name
+    
     def __repr__(self):
-        return f"Author({self.name}, {self.birth_date})"
+        return f"Author({self.name}, {self.birth_date}, {self.death_date}, {self.country})"

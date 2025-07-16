@@ -11,13 +11,16 @@
     
     <div id="content">
         <nav>
+            {% if user.is_authenticated %}
             <a href="{% url 'library:index' %}">Books</a> | 
             <a href="{% url 'library:author_list' %}">Authors</a> |
-            <a href="{% url 'library:data_management' %}">Import/Export CSV</a>
-            {% if user.is_authenticated %}
-                | <a href="{% url 'logout' %}">Log out</a>
+            <a href="{% url 'library:data_management' %}">Import/Export CSV</a> |
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="link-button">Log out</button>
+            </form>
             {% else %}
-                | <a href="{% url 'login' %}">Log in</a>
+               <a href="{% url 'login' %}">Log in</a>
             {% endif %}
         </nav>
         <hr>
