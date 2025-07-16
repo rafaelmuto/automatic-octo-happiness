@@ -28,7 +28,7 @@ class Command(BaseCommand):
         # Fetch book data from OpenLibrary
         book_data = OpenLibraryService.search_by_isbn(isbn)
         if not book_data:
-            raise CommandError(f"No book found with ISBN: {isbn}")
+            raise CommandError(f"No book found in OpenLibrary with ISBN: {isbn}")
 
         # Extract the author's OpenLibrary key from the initial data
         author_url = book_data.get("authors", [{}])[0].get("url")
@@ -40,28 +40,30 @@ class Command(BaseCommand):
             raise CommandError("Could not extract author key from the url.")
 
         # Extract the book's OpenLibrary key
-        open_library_key = book_data.get("key")
-        if not open_library_key:
+        book_key = book_data.get("key")
+        if not book_key:
             # Some responses have the key in a different location
             if "works" in book_data and book_data["works"]:
-                open_library_key = book_data["works"][0].get("key")
+                book_key = book_data["works"][0].get("key")
 
-        if not open_library_key:
+        if not book_key:
             raise CommandError("Could not find an OpenLibrary key for the book.")
 
+        book_key = book_key.split("/")[-1]
+        if not book_key or not book_key.startswith("OL"):
+            raise CommandError("Could not extract book key from the url.")
+        
         # Fetch detailed book data using the OpenLibrary key
-        detailed_book_data = OpenLibraryService.get_data_by_key(open_library_key)
+        detailed_book_data = OpenLibraryService.get_data_by_key(f'/books/{book_key}')
         if not detailed_book_data:
             raise CommandError(
-                f"Could not fetch detailed book data for key: {open_library_key}"
+                f"Could not fetch detailed book data for key: {book_key}"
             )
 
         # Handle the author
         try:
-            author = Author.objects.get(open_library_key=author_key)
-            self.stdout.write(
-                self.style.SUCCESS(f"Author with key {author_key} already exists.")
-            )
+            author = Author.objects.get(olid=author_key)
+            self.stdout.write(self.style.SUCCESS(f"Author with key {author_key} already exists."))
         except Author.DoesNotExist:
             author_data = OpenLibraryService.get_data_by_key(f"/authors/{author_key}")
             if not author_data:
@@ -107,7 +109,7 @@ class Command(BaseCommand):
 
             author = Author.objects.create(
                 name=author_name,
-                open_library_key=author_key,
+                olid=author_key,
                 birth_date=birth_date,
                 death_date=death_date,
             )
@@ -153,7 +155,7 @@ class Command(BaseCommand):
             author=author,
             publish_date=publish_date,
             isbn=isbn,
-            open_library_key=open_library_key,
+            olid=book_key,
             number_of_pages=detailed_book_data.get(
                 "number_of_pages", book_data.get("number_of_pages")
             ),

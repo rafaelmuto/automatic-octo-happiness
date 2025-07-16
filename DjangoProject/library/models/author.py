@@ -7,7 +7,11 @@ class Author(models.Model):
     death_date = models.DateField(null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
 
-    open_library_key = models.CharField(max_length=50, unique=True, null=True)
+    olid = models.CharField(max_length=50, unique=True, null=True)
+
+    def open_library_key(self) -> str | None:
+        """Return the Open Library key for the author."""
+        return f'/authors/{self.olid}' if self.olid else None
 
     def is_alive(self) -> bool:
         return self.death_date is None

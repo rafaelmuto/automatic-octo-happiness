@@ -9,7 +9,11 @@ class Book(models.Model):
     number_of_pages = models.PositiveIntegerField(null=True, blank=True)
 
     isbn = models.CharField(max_length=13, unique=True, null=True)
-    open_library_key = models.CharField(max_length=50, unique=True, null=True)
+    olid = models.CharField(max_length=50, unique=True, null=True)
+
+    def open_library_key(self) -> str | None:
+        """Return the Open Library key for the book."""
+        return f'/books/{self.olid}' if self.olid else None
 
     def __str__(self):
         return (
