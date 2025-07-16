@@ -1,13 +1,17 @@
 {% extends 'library/base.html' %}
 
 {% block content %}
+<div class="container">
     <h1>Author Details</h1>
+    <hr>
 
     <h2>{{ author.name }}</h2>
     <p>Birth Date: {{ author.birth_date|default:"N/A" }}</p>
     <p>Death Date: {{ author.death_date|default:"N/A" }}</p>
     <p>Country: {{ author.country|default:"N/A" }}</p>
 
+    <br> 
+    
     <h3>Books by {{ author.name }}</h3>
     {% if author.book_set.all %}
         <ul>
@@ -19,5 +23,10 @@
         <p>No books found for this author.</p>
     {% endif %}
 
+    <br>
+    <hr>
     <p><a href="{% url 'library:author_list' %}">Back to Author List</a></p>
+
+</div>
+    
 {% endblock %}

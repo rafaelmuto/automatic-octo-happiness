@@ -12,7 +12,6 @@
 
  * {
      font-family: monospace;
-     font-size: 1rem;
      margin: 0;
      padding: 0;
      box-sizing: border-box;
@@ -42,6 +41,13 @@
      margin: 0 auto;
      padding: 2rem;
  }
+
+ nav {
+     font-size: 1.2em;
+     padding: 0 2rem;
+     max-width: var(--max_w);
+ }
+
 
  ul {
      list-style-type: none;

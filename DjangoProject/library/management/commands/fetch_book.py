@@ -47,15 +47,6 @@ class Command(BaseCommand):
         if not open_library_key:
             raise CommandError("Could not find an OpenLibrary key for the book.")
 
-        # Check if the book with the same OpenLibrary key already exists
-        if Book.objects.filter(open_library_key=open_library_key).exists():
-            self.stdout.write(
-                self.style.SUCCESS(
-                    f"Book with OpenLibrary key {open_library_key} already exists."
-                )
-            )
-            return
-
         # Fetch detailed book data using the OpenLibrary key
         detailed_book_data = OpenLibraryService.get_data_by_key(open_library_key)
         if not detailed_book_data:
@@ -75,6 +66,7 @@ class Command(BaseCommand):
                 raise CommandError(f"Could not fetch author data for key: {author_key}")
 
             author_name = author_data.get("name", "Unknown Author")
+
             birth_date_str = author_data.get("birth_date")
             birth_date = None
             if birth_date_str:
@@ -93,8 +85,29 @@ class Command(BaseCommand):
                             )
                         )
 
+            death_date_str = author_data.get("death_date")
+            death_date = None
+            if death_date_str:
+                try:
+                    # Attempt to parse different date formats
+                    death_date = datetime.strptime(death_date_str, "%Y-%m-%d").date()
+                except ValueError:
+                    try:
+                        death_date = datetime.strptime(
+                            death_date_str, "%d %B %Y"
+                        ).date()
+                    except ValueError:
+                        self.stdout.write(
+                            self.style.WARNING(
+                                f"Could not parse death date: {death_date_str}"
+                            )
+                        )
+
             author = Author.objects.create(
-                name=author_name, open_library_key=author_key, birth_date=birth_date
+                name=author_name,
+                open_library_key=author_key,
+                birth_date=birth_date,
+                death_date=death_date,
             )
             self.stdout.write(
                 self.style.SUCCESS(f"Successfully created author: {author.name}")

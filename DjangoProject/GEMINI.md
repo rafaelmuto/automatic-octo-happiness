@@ -334,7 +334,7 @@ The main way you can interact with Sophia is through the web interface, running 
     *   **Bulk Import/Export:** Allow importing/exporting entry data (e.g., CSV, JSON).
     *   **Advanced Search & Filtering:** Implement more sophisticated search options (e.g., by genre, tags, publication year range) and saved searches.
     *   **Custom Metadata Fields:** Enable users to define their own custom fields for entries (e.g., "read status," "personal rating").
-    *   **Automated Cover Image Fetching:** Integrate with external APIs (e.g., Google Books API) to automatically fetch cover images based on ISBN.
+    *   **Automated Cover Image Fetching:** Integrate with external APIs (e.g., Google Books API) to atomatically fetch cover images based on ISBN.
 
 2.  **Quote & Passage Features:**
     *   **Quote Tagging/Categorization:** Allow users to tag and categorize quotes for easier retrieval.
@@ -355,3 +355,59 @@ The main way you can interact with Sophia is through the web interface, running 
 # TODO
     1. make basic front end
     2. implement authentication based on django users
+
+
+# test books
+    - 0451524934
+    - 9780618260300
+    - 9780345339683
+    - 9780743273565
+    - 9780061120084
+    - 9780141439518
+    - 9780142437247
+    - 9780618640157
+    - 9780060850524
+    - 9780486282114
+    - 9780486275437
+    - 9780142437261
+    - 9780486411095
+    - 9780141182902
+    - 9780140449136
+    - 9780140449235
+    - 9780140449242
+    - 9780141182674
+    - 0899661343
+    - 9780143039600
+    - 9780450013041
+    - 9781400043668
+    - 0099448823
+    - 9780307593313
+    - 9780679446699
+    - 0870119052
+    - 4770016832
+    - 0679743464
+    - 9780395520215
+    - 9780007770120
+    - 0261102362
+    - 9780345253453
+    - 9780553211962
+    - 9780805204162
+    - 9780143111603
+    - 9780425158647
+    - 9780553281743
+    - 0441013678
+    - 9780006480433
+    - 9780425190449
+    - 9781858788906
+    - 9780670919529
+    - 9781943138425
+    - 9781785996313
+    - 0156148501
+    - 9781585102655
+    - 0679785892
+    - 9780679603313
+    - 9780748769551
+    - 0553380958
+    - 9780062472106
+    - 0380973634
+    - 9781542049184
