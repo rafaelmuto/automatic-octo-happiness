@@ -353,8 +353,7 @@ The main way you can interact with Sophia is through the web interface, running 
     *   https://github.com/zxing-js/library : js lib to read barcodes 
 
 # TODO
-    1. make basic front end
-    2. implement authentication based on django users
+
 
 
 # test books
