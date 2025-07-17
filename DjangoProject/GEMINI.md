@@ -62,6 +62,17 @@ The main way you can interact with Sophia is through the web interface, running 
     python manage.py runserver
     ```
 
+### Docker
+
+*   Building dockerimage
+    ```bash
+    docker build . -t sophia_image --no-cache
+    ```
+*   Runing application
+    ```bash
+    docker compose up
+    ```
+
 ## Development Guidelines
 
 ### Coding Style

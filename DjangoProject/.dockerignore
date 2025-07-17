@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.dockerignore
+Dockerfile
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.eggs/
+.egg-info/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Project specific
+.env
+.env*
+.ruff_cache/
+books_example.csv
+GEMINI.md
