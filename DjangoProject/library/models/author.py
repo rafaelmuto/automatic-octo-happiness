@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Author(models.Model):
     name = models.CharField(max_length=100)
     birth_date = models.DateField(null=True)
@@ -8,6 +7,9 @@ class Author(models.Model):
     country = models.CharField(max_length=100, null=True, blank=True)
 
     olid = models.CharField(max_length=50, unique=True, null=True)
+    
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
 
     def get_open_library_key(self) -> str | None:
         """Return the Open Library key for the author."""
