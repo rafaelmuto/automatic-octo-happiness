@@ -3,7 +3,7 @@ from django.utils import timezone
 
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.ForeignKey("Author", on_delete=models.CASCADE)
+    author = models.ForeignKey("Author", on_delete=models.CASCADE, related_name='books')
     publish_date = models.DateField(null=True)
     publisher = models.CharField(max_length=100, null=True)
     number_of_pages = models.PositiveIntegerField(null=True, blank=True)
