@@ -2,14 +2,39 @@ from rest_framework import generics
 from django.http import JsonResponse
 
 from .models.book import Book
-from .serializers import BookSerializer
+from .models.author import Author
+from .serializers import BookSerializer, AuthorSerializer
 
 from .services import OpenLibraryService
+
+
+class AuthorListAPIView(generics.ListAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+
+class AuthorDetailAPIView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+
+
+class AuthorSearchAPIView(generics.ListAPIView):
+    serializer_class = AuthorSerializer
+
+    def get_queryset(self):
+        name = self.kwargs['name']
+        return Author.objects.filter(name__icontains=name)
 
 
 class BookListAPIView(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+
+class BookDetailAPIView(generics.RetrieveAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    lookup_field = 'isbn'
 
 
 def search_by_isbn_view(request, isbn):

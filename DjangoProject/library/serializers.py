@@ -6,7 +6,7 @@ from .models.book import Book
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = ["id", "name", "birth_date"]
+        fields = ["name", "birth_date", "death_date", "country"]
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -14,4 +14,4 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ["id", "title", "author", "publish_date", "isbn"]
+        fields = ["title", "author", "publish_date", "isbn"]
