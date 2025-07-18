@@ -22,6 +22,16 @@ The main way you can interact with Sophia is through the web interface, running 
 
     Sophia is the Greek word for "wisdom." It's a simple, beautiful, and direct name that gets straight to the core purpose of a library.
 
+## API Endpoints
+
+*   `api/library/books/`: GET - Returns a list of all books.
+*   `api/library/books/<isbn>/`: GET - Returns a single book by ISBN.
+*   `api/library/authors/`: GET, POST - Returns a list of all authors, or creates a new author.
+*   `api/library/authors/<id>/`: GET, PUT, PATCH, DELETE - Returns, updates, or deletes a single author by ID.
+*   `api/library/authors/name/<name>/`: GET - Returns a list of authors by name.
+*   `api/library/openlibrary/isbn/<isbn>/`: GET - Searches for a book by ISBN on OpenLibrary.
+*   `api/library/openlibrary/key/<key>/`: GET - Retrieves data from OpenLibrary by key.
+
 ## Getting Started
 
 ### Prerequisites
@@ -338,6 +348,8 @@ The main way you can interact with Sophia is through the web interface, running 
         path('openlibrary-search/', views.search_openlibrary_view, name='openlibrary-search'),
     ]
     ```
+
+
 
 # Future Implementations (backlog)
 
