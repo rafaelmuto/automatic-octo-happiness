@@ -33,6 +33,7 @@ The main way you can interact with Sophia is through the web interface, running 
                 "title": "The Hitchhiker's Guide to the Galaxy",
                 "author": 1, // Author ID
                 "published_date": "1979-10-12",
+                "number_of_pages": 123,
                 "isbn": "9780345391803"
             }
             ```
@@ -41,6 +42,9 @@ The main way you can interact with Sophia is through the web interface, running 
     *   **PUT**: Updates an existing book by ISBN. (Requires full payload)
     *   **PATCH**: Partially updates an existing book by ISBN. (Allows partial payload)
     *   **DELETE**: Deletes a single book by ISBN.
+*   `api/library/books/author/<int:author_id>`:
+    *   **GET**: Returns a list of books by the author.
+
 *   `api/library/authors/`:
     *   **GET**: Returns a list of all authors.
     *   **POST**: Creates a new author.
@@ -48,7 +52,9 @@ The main way you can interact with Sophia is through the web interface, running 
             ```json
             {
                 "name": "Douglas Adams",
-                "birth_date": "1952-03-11"
+                "birth_date": "1952-03-11",
+                "death_date": "2000-01-01",
+                "country": "USA"
             }
             ```
 *   `api/library/authors/<id>/`:
@@ -56,8 +62,9 @@ The main way you can interact with Sophia is through the web interface, running 
     *   **PUT**: Updates an existing author by ID. (Requires full payload)
     *   **PATCH**: Partially updates an existing author by ID. (Allows partial payload)
     *   **DELETE**: Deletes a single author by ID.
-*   `api/library/authors/name/<name>/`:
-    *   **GET**: Returns a list of authors by name (case-insensitive partial match).
+*   `api/library/authors/books/<id>/`:
+    *   **GET**: Returns a single author by ID with a list of books by the author.
+
 *   `api/library/openlibrary/isbn/<isbn>/`:
     *   **GET**: Searches for a book by ISBN on OpenLibrary and returns its data.
 *   `api/library/openlibrary/key/<key>/`:
