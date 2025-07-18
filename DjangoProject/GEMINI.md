@@ -24,13 +24,46 @@ The main way you can interact with Sophia is through the web interface, running 
 
 ## API Endpoints
 
-*   `api/library/books/`: GET - Returns a list of all books.
-*   `api/library/books/<isbn>/`: GET - Returns a single book by ISBN.
-*   `api/library/authors/`: GET, POST - Returns a list of all authors, or creates a new author.
-*   `api/library/authors/<id>/`: GET, PUT, PATCH, DELETE - Returns, updates, or deletes a single author by ID.
-*   `api/library/authors/name/<name>/`: GET - Returns a list of authors by name.
-*   `api/library/openlibrary/isbn/<isbn>/`: GET - Searches for a book by ISBN on OpenLibrary.
-*   `api/library/openlibrary/key/<key>/`: GET - Retrieves data from OpenLibrary by key.
+*   `api/library/books/`:
+    *   **GET**: Returns a list of all books.
+    *   **POST**: Creates a new book.
+        *   **Payload Example**:
+            ```json
+            {
+                "title": "The Hitchhiker's Guide to the Galaxy",
+                "author": 1, // Author ID
+                "published_date": "1979-10-12",
+                "isbn": "9780345391803"
+            }
+            ```
+*   `api/library/books/<isbn>/`:
+    *   **GET**: Returns a single book by ISBN.
+    *   **PUT**: Updates an existing book by ISBN. (Requires full payload)
+    *   **PATCH**: Partially updates an existing book by ISBN. (Allows partial payload)
+    *   **DELETE**: Deletes a single book by ISBN.
+*   `api/library/authors/`:
+    *   **GET**: Returns a list of all authors.
+    *   **POST**: Creates a new author.
+        *   **Payload Example**:
+            ```json
+            {
+                "name": "Douglas Adams",
+                "birth_date": "1952-03-11"
+            }
+            ```
+*   `api/library/authors/<id>/`:
+    *   **GET**: Returns a single author by ID.
+    *   **PUT**: Updates an existing author by ID. (Requires full payload)
+    *   **PATCH**: Partially updates an existing author by ID. (Allows partial payload)
+    *   **DELETE**: Deletes a single author by ID.
+*   `api/library/authors/name/<name>/`:
+    *   **GET**: Returns a list of authors by name (case-insensitive partial match).
+*   `api/library/openlibrary/isbn/<isbn>/`:
+    *   **GET**: Searches for a book by ISBN on OpenLibrary and returns its data.
+*   `api/library/openlibrary/key/<key>/`:
+    *   **GET**: Retrieves data from OpenLibrary using an OpenLibrary key (OLID).
+
+
 
 ## Getting Started
 
