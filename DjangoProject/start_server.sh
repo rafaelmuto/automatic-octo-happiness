@@ -10,4 +10,4 @@ python manage.py migrate
 # python manage.py collectstatic --noinput
 
 # Run the development server
-python manage.py runserver
+python manage.py runserver 8001
