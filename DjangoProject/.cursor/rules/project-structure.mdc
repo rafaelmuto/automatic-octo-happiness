@@ -1,0 +1,117 @@
+---
+alwaysApply: true
+---
+
+# Django Project Structure Guide
+
+## Project Overview
+
+- **Project Name:** Sophia
+- **Purpose:** Manage private libraries, helping users categorize and find books, magazines, and documents (entries). Supports registering metadata, quotes, and passages. Designed for small single-board computers (e.g., Raspberry Pi) with future hardware integration (LEDs, RFID, barcode).
+- **Main Technologies:**
+  - Python 3.10.12
+  - Django 5.2.4
+  - SQLite (default DB)
+  - Django REST Framework (API)
+
+## Main Entry Points
+
+- [manage.py](mdc:../manage.py): Django management utility
+- [sophia/settings.py](mdc:../sophia/settings.py): Project settings
+- [sophia/urls.py](mdc:../sophia/urls.py): Project URL configuration
+
+## App Structure
+
+- `library/`: Main Django app
+  - Models: [library/models/](mdc:../library/models/)
+  - Views: [library/views/](mdc:../library/views/)
+  - API: [library/api/](mdc:../library/api/)
+  - Templates: [library/templates/](mdc:../library/templates/)
+  - Static: [library/static/](mdc:../library/static/)
+  - Management Commands: [library/management/commands/](mdc:../library/management/commands/)
+  - Serializers: [library/serializers.py](mdc:../library/serializers.py)
+  - Services: [library/services.py](mdc:../library/services.py)
+
+## API Endpoints (see GEMINI.md for details)
+
+- Books: `/api/library/books/`, `/api/library/books/<isbn>/`, `/api/library/books/author/<author_id>/`
+- Authors: `/api/library/authors/`, `/api/library/authors/<id>/`, `/api/library/authors/books/<id>/`
+- OpenLibrary: `/api/library/openlibrary/isbn/<isbn>/`, `/api/library/openlibrary/key/<key>/`
+
+## Development Guidelines
+
+- **Linter:** Ruff (`ruff check .`)
+- **Testing:** Django unittest (`python manage.py test`), tests in [library/tests.py](mdc:../library/tests.py)
+- **.env Support:** Uses `python-dotenv` for environment variables (see [sophia/settings.py](mdc:../sophia/settings.py))
+- **Docker:** Supported via [Dockerfile](mdc:../Dockerfile) and [docker-compose.yaml](mdc:../docker-compose.yaml)
+
+## Future/Backlog Features
+
+- Bulk import/export (CSV, JSON)
+- Advanced search/filtering
+- Custom metadata fields
+- Automated cover image fetching
+- Quote tagging and full-text search
+- Hardware integration (LEDs, RFID, barcode)
+- Library dashboard and responsive design
+
+For more, see [GEMINI.md](mdc:../GEMINI.md).
+
+---
+
+# Django Project Structure Guide
+
+## Project Overview
+
+- **Project Name:** Sophia
+- **Purpose:** Manage private libraries, helping users categorize and find books, magazines, and documents (entries). Supports registering metadata, quotes, and passages. Designed for small single-board computers (e.g., Raspberry Pi) with future hardware integration (LEDs, RFID, barcode).
+- **Main Technologies:**
+  - Python 3.10.12
+  - Django 5.2.4
+  - SQLite (default DB)
+  - Django REST Framework (API)
+
+## Main Entry Points
+
+- [manage.py](mdc:../manage.py): Django management utility
+- [sophia/settings.py](mdc:../sophia/settings.py): Project settings
+- [sophia/urls.py](mdc:../sophia/urls.py): Project URL configuration
+
+## App Structure
+
+- `library/`: Main Django app
+  - Models: [library/models/](mdc:../library/models/)
+  - Views: [library/views/](mdc:../library/views/)
+  - API: [library/api/](mdc:../library/api/)
+  - Templates: [library/templates/](mdc:../library/templates/)
+  - Static: [library/static/](mdc:../library/static/)
+  - Management Commands: [library/management/commands/](mdc:../library/management/commands/)
+  - Serializers: [library/serializers.py](mdc:../library/serializers.py)
+  - Services: [library/services.py](mdc:../library/services.py)
+
+## API Endpoints (see GEMINI.md for details)
+
+- Books: `/api/library/books/`, `/api/library/books/<isbn>/`, `/api/library/books/author/<author_id>/`
+- Authors: `/api/library/authors/`, `/api/library/authors/<id>/`, `/api/library/authors/books/<id>/`
+- OpenLibrary: `/api/library/openlibrary/isbn/<isbn>/`, `/api/library/openlibrary/key/<key>/`
+
+## Development Guidelines
+
+- **Linter:** Ruff (`ruff check .`)
+- **Testing:** Django unittest (`python manage.py test`), tests in [library/tests.py](mdc:../library/tests.py)
+- **.env Support:** Uses `python-dotenv` for environment variables (see [sophia/settings.py](mdc:../sophia/settings.py))
+- **Docker:** Supported via [Dockerfile](mdc:../Dockerfile) and [docker-compose.yaml](mdc:../docker-compose.yaml)
+
+## Future/Backlog Features
+
+- Bulk import/export (CSV, JSON)
+- Advanced search/filtering
+- Custom metadata fields
+- Automated cover image fetching
+- Quote tagging and full-text search
+- Hardware integration (LEDs, RFID, barcode)
+- Library dashboard and responsive design
+
+For more, see [GEMINI.md](mdc:../GEMINI.md).
+
+---
