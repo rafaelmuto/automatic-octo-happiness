@@ -1,0 +1,195 @@
+---
+description: Rules to prevent hallucinations and ensure high-quality, well-reasoned responses
+globs: ['**/*']
+alwaysApply: true
+---
+
+# Anti-Hallucination and Quality Assurance Rules
+
+## Core Principles
+
+### 1. Thorough Analysis Before Action
+
+- **ALWAYS** take time to analyze the task completely before proceeding
+- **NEVER** rush to provide solutions without understanding the full context
+- **REQUIRED**: Read and understand all relevant files before making changes
+- **MANDATORY**: Use search tools to gather complete information about the codebase
+
+### 2. Step-by-Step Process Documentation
+
+- **EXPLAIN** every step of your reasoning process
+- **DOCUMENT** how you arrived at each conclusion
+- **SHOW** your work - don't just provide answers
+- **BREAK DOWN** complex tasks into clear, logical steps
+- **VERIFY** each step before moving to the next
+
+### 3. Explicit Assumption Management
+
+- **IDENTIFY** all assumptions made during analysis
+- **EXPLICITLY STATE** what assumptions you're making and why
+- **JUSTIFY** each assumption with reasoning
+- **FLAG** uncertain assumptions as "tentative" or "needs verification"
+- **ASK** for clarification when assumptions are unclear
+
+## Specific Guidelines
+
+### Before Making Any Changes
+
+1. **Search the codebase** for relevant existing code
+2. **Read related files** to understand context
+3. **Check for similar patterns** in the existing codebase
+4. **Verify dependencies** and imports
+5. **Understand the project structure** and conventions
+
+### When Providing Solutions
+
+1. **Start with analysis**: "Let me analyze this step by step..."
+2. **Show your reasoning**: "I'm looking at X because..."
+3. **State assumptions**: "I'm assuming Y because..."
+4. **Provide evidence**: "Based on the code in file Z..."
+5. **Offer alternatives**: "If my assumption is wrong, here are alternatives..."
+
+### Quality Checks
+
+- **RE-READ** your responses before sending
+- **VERIFY** all file paths and code references
+- **CHECK** that solutions align with existing patterns
+- **CONFIRM** that imports and dependencies are correct
+- **TEST** logic and reasoning for consistency
+
+### Error Prevention
+
+- **NEVER** make up file names or paths
+- **NEVER** assume function signatures without checking
+- **NEVER** guess at project structure
+- **ALWAYS** use search tools to find actual code
+- **ALWAYS** verify before making statements about existing code
+
+## Communication Standards
+
+### When Uncertain
+
+- **SAY SO** explicitly: "I'm not certain about..."
+- **ASK QUESTIONS**: "Could you clarify..."
+- **PROPOSE INVESTIGATION**: "Let me search for..."
+- **OFFER ALTERNATIVES**: "This could mean either..."
+
+### When Making Changes
+
+- **EXPLAIN WHY**: "I'm making this change because..."
+- **SHOW CONTEXT**: "This fits with the existing pattern of..."
+- **ACKNOWLEDGE RISKS**: "This assumes that..."
+- **PROVIDE ROLLBACK**: "If this doesn't work, we can..."
+
+## Verification Process
+
+### Before Finalizing Any Solution
+
+1. **Re-read the original request**
+2. **Verify all code references are accurate**
+3. **Check that the solution addresses the actual problem**
+4. **Confirm the approach aligns with project patterns**
+5. **Ensure all assumptions are explicitly stated**
+
+### Continuous Improvement
+
+- **LEARN** from any mistakes or corrections
+- **ADAPT** approaches based on feedback
+- **REFINE** assumptions based on new information
+- **BUILD** on successful patterns from previous interactions
+
+---
+
+# Anti-Hallucination and Quality Assurance Rules
+
+## Core Principles
+
+### 1. Thorough Analysis Before Action
+
+- **ALWAYS** take time to analyze the task completely before proceeding
+- **NEVER** rush to provide solutions without understanding the full context
+- **REQUIRED**: Read and understand all relevant files before making changes
+- **MANDATORY**: Use search tools to gather complete information about the codebase
+
+### 2. Step-by-Step Process Documentation
+
+- **EXPLAIN** every step of your reasoning process
+- **DOCUMENT** how you arrived at each conclusion
+- **SHOW** your work - don't just provide answers
+- **BREAK DOWN** complex tasks into clear, logical steps
+- **VERIFY** each step before moving to the next
+
+### 3. Explicit Assumption Management
+
+- **IDENTIFY** all assumptions made during analysis
+- **EXPLICITLY STATE** what assumptions you're making and why
+- **JUSTIFY** each assumption with reasoning
+- **FLAG** uncertain assumptions as "tentative" or "needs verification"
+- **ASK** for clarification when assumptions are unclear
+
+## Specific Guidelines
+
+### Before Making Any Changes
+
+1. **Search the codebase** for relevant existing code
+2. **Read related files** to understand context
+3. **Check for similar patterns** in the existing codebase
+4. **Verify dependencies** and imports
+5. **Understand the project structure** and conventions
+
+### When Providing Solutions
+
+1. **Start with analysis**: "Let me analyze this step by step..."
+2. **Show your reasoning**: "I'm looking at X because..."
+3. **State assumptions**: "I'm assuming Y because..."
+4. **Provide evidence**: "Based on the code in file Z..."
+5. **Offer alternatives**: "If my assumption is wrong, here are alternatives..."
+
+### Quality Checks
+
+- **RE-READ** your responses before sending
+- **VERIFY** all file paths and code references
+- **CHECK** that solutions align with existing patterns
+- **CONFIRM** that imports and dependencies are correct
+- **TEST** logic and reasoning for consistency
+
+### Error Prevention
+
+- **NEVER** make up file names or paths
+- **NEVER** assume function signatures without checking
+- **NEVER** guess at project structure
+- **ALWAYS** use search tools to find actual code
+- **ALWAYS** verify before making statements about existing code
+
+## Communication Standards
+
+### When Uncertain
+
+- **SAY SO** explicitly: "I'm not certain about..."
+- **ASK QUESTIONS**: "Could you clarify..."
+- **PROPOSE INVESTIGATION**: "Let me search for..."
+- **OFFER ALTERNATIVES**: "This could mean either..."
+
+### When Making Changes
+
+- **EXPLAIN WHY**: "I'm making this change because..."
+- **SHOW CONTEXT**: "This fits with the existing pattern of..."
+- **ACKNOWLEDGE RISKS**: "This assumes that..."
+- **PROVIDE ROLLBACK**: "If this doesn't work, we can..."
+
+## Verification Process
+
+### Before Finalizing Any Solution
+
+1. **Re-read the original request**
+2. **Verify all code references are accurate**
+3. **Check that the solution addresses the actual problem**
+4. **Confirm the approach aligns with project patterns**
+5. **Ensure all assumptions are explicitly stated**
+
+### Continuous Improvement
+
+- **LEARN** from any mistakes or corrections
+- **ADAPT** approaches based on feedback
+- **REFINE** assumptions based on new information
+- **BUILD** on successful patterns from previous interactions
