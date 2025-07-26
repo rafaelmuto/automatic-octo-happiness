@@ -19,17 +19,24 @@ Currently, the API uses Django's session-based authentication. Future versions w
 
 ### Response Format
 
-All API responses follow this standard format:
+API responses follow Django REST Framework's standard format:
 
 ```json
-{
-  "data": {...},
-  "meta": {
-    "pagination": {...},
-    "timestamp": "2024-07-25T12:00:00Z"
-  },
-  "errors": [...]
-}
+[
+	{
+		"id": 1,
+		"title": "The Hitchhiker's Guide to the Galaxy",
+		"author": {
+			"id": 1,
+			"name": "Douglas Adams",
+			"birth_date": "1952-03-11",
+			"death_date": "2001-05-11",
+			"country": "UK"
+		},
+		"publish_date": "1979-10-12",
+		"isbn": "9780345391803"
+	}
+]
 ```
 
 ### Error Handling
@@ -50,87 +57,72 @@ Errors are returned with appropriate HTTP status codes:
 
 Returns a list of all books in the library.
 
-#### Query Parameters
-
-- `page` (optional): Page number for pagination (default: 1)
-- `page_size` (optional): Number of items per page (default: 20)
-- `search` (optional): Search term for title or author
-- `author` (optional): Filter by author ID
-- `sort_by` (optional): Sort field (title, author, published_date)
-- `sort_order` (optional): Sort order (asc, desc)
-
 #### Example Request
 
 ```bash
-curl -X GET "http://localhost:8001/api/library/books/?page=1&page_size=10"
+curl -X GET "http://localhost:8001/api/library/books/"
 ```
 
 #### Example Response
 
 ```json
-{
-	"data": [
-		{
-			"id": 1,
-			"title": "The Hitchhiker's Guide to the Galaxy",
-			"author": {
-				"id": 1,
-				"name": "Douglas Adams"
-			},
-			"isbn": "9780345391803",
-			"published_date": "1979-10-12",
-			"number_of_pages": 123,
-			"created_at": "2024-07-25T10:00:00Z",
-			"updated_at": "2024-07-25T10:00:00Z"
-		}
-	],
-	"meta": {
-		"pagination": {
-			"page": 1,
-			"page_size": 10,
-			"total_count": 50,
-			"total_pages": 5
-		},
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
-}
-```
-
-### Get Book by ISBN
-
-**GET** `/api/library/books/{isbn}/`
-
-Returns a specific book by its ISBN.
-
-#### Example Request
-
-```bash
-curl -X GET "http://localhost:8001/api/library/books/9780345391803/"
-```
-
-#### Example Response
-
-```json
-{
-	"data": {
+[
+	{
 		"id": 1,
 		"title": "The Hitchhiker's Guide to the Galaxy",
 		"author": {
 			"id": 1,
 			"name": "Douglas Adams",
 			"birth_date": "1952-03-11",
+			"death_date": "2001-05-11",
 			"country": "UK"
 		},
-		"isbn": "9780345391803",
-		"published_date": "1979-10-12",
-		"number_of_pages": 123,
-		"created_at": "2024-07-25T10:00:00Z",
-		"updated_at": "2024-07-25T10:00:00Z"
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
+		"publish_date": "1979-10-12",
+		"isbn": "9780345391803"
 	}
+]
+```
+
+### Get Book by ISBN
+
+**GET** `/api/library/books/isbn/{isbn}/`
+
+Returns a specific book by its ISBN.
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:8001/api/library/books/isbn/9780345391803/"
+```
+
+#### Example Response
+
+```json
+{
+	"id": 1,
+	"title": "The Hitchhiker's Guide to the Galaxy",
+	"author": {
+		"id": 1,
+		"name": "Douglas Adams",
+		"birth_date": "1952-03-11",
+		"death_date": "2001-05-11",
+		"country": "UK"
+	},
+	"publish_date": "1979-10-12",
+	"isbn": "9780345391803"
 }
+```
+
+### Get Book by ID
+
+**GET** `/api/library/books/{id}/`
+
+Returns a specific book by its ID.
+
+#### Example Request
+
+```bash
+curl -X GET "http://localhost:8001/api/library/books/1/"
 ```
 
 ### Create New Book
@@ -145,9 +137,8 @@ Creates a new book in the library.
 {
 	"title": "The Hitchhiker's Guide to the Galaxy",
 	"author": 1,
-	"isbn": "9780345391803",
-	"published_date": "1979-10-12",
-	"number_of_pages": 123
+	"publish_date": "1979-10-12",
+	"isbn": "9780345391803"
 }
 ```
 
@@ -159,37 +150,16 @@ curl -X POST "http://localhost:8001/api/library/books/" \
   -d '{
     "title": "The Hitchhiker'\''s Guide to the Galaxy",
     "author": 1,
-    "isbn": "9780345391803",
-    "published_date": "1979-10-12",
-    "number_of_pages": 123
+    "publish_date": "1979-10-12",
+    "isbn": "9780345391803"
   }'
-```
-
-#### Example Response
-
-```json
-{
-	"data": {
-		"id": 1,
-		"title": "The Hitchhiker's Guide to the Galaxy",
-		"author": 1,
-		"isbn": "9780345391803",
-		"published_date": "1979-10-12",
-		"number_of_pages": 123,
-		"created_at": "2024-07-25T10:00:00Z",
-		"updated_at": "2024-07-25T10:00:00Z"
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
-}
 ```
 
 ### Update Book
 
-**PUT** `/api/library/books/{isbn}/`
+**PUT** `/api/library/books/{id}/`
 
-Updates an existing book by ISBN.
+Updates an existing book by ID.
 
 #### Request Body
 
@@ -197,61 +167,33 @@ Updates an existing book by ISBN.
 {
 	"title": "The Hitchhiker's Guide to the Galaxy (Updated)",
 	"author": 1,
-	"isbn": "9780345391803",
-	"published_date": "1979-10-12",
-	"number_of_pages": 150
+	"publish_date": "1979-10-12",
+	"isbn": "9780345391803"
 }
-```
-
-#### Example Request
-
-```bash
-curl -X PUT "http://localhost:8001/api/library/books/9780345391803/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "The Hitchhiker'\''s Guide to the Galaxy (Updated)",
-    "author": 1,
-    "isbn": "9780345391803",
-    "published_date": "1979-10-12",
-    "number_of_pages": 150
-  }'
 ```
 
 ### Delete Book
 
-**DELETE** `/api/library/books/{isbn}/`
+**DELETE** `/api/library/books/{id}/`
 
 Deletes a book from the library.
 
 #### Example Request
 
 ```bash
-curl -X DELETE "http://localhost:8001/api/library/books/9780345391803/"
-```
-
-#### Example Response
-
-```json
-{
-	"data": {
-		"message": "Book deleted successfully"
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
-}
+curl -X DELETE "http://localhost:8001/api/library/books/1/"
 ```
 
 ### Get Books by Author
 
-**GET** `/api/library/books/author/{author_id}/`
+**GET** `/api/library/books/author/{author_id}`
 
 Returns all books by a specific author.
 
 #### Example Request
 
 ```bash
-curl -X GET "http://localhost:8001/api/library/books/author/1/"
+curl -X GET "http://localhost:8001/api/library/books/author/1"
 ```
 
 ## 👤 Authors API
@@ -262,14 +204,6 @@ curl -X GET "http://localhost:8001/api/library/books/author/1/"
 
 Returns a list of all authors.
 
-#### Query Parameters
-
-- `page` (optional): Page number for pagination (default: 1)
-- `page_size` (optional): Number of items per page (default: 20)
-- `search` (optional): Search term for author name
-- `sort_by` (optional): Sort field (name, birth_date)
-- `sort_order` (optional): Sort order (asc, desc)
-
 #### Example Request
 
 ```bash
@@ -279,28 +213,15 @@ curl -X GET "http://localhost:8001/api/library/authors/"
 #### Example Response
 
 ```json
-{
-	"data": [
-		{
-			"id": 1,
-			"name": "Douglas Adams",
-			"birth_date": "1952-03-11",
-			"death_date": "2001-05-11",
-			"country": "UK",
-			"created_at": "2024-07-25T10:00:00Z",
-			"updated_at": "2024-07-25T10:00:00Z"
-		}
-	],
-	"meta": {
-		"pagination": {
-			"page": 1,
-			"page_size": 20,
-			"total_count": 25,
-			"total_pages": 2
-		},
-		"timestamp": "2024-07-25T12:00:00Z"
+[
+	{
+		"id": 1,
+		"name": "Douglas Adams",
+		"birth_date": "1952-03-11",
+		"death_date": "2001-05-11",
+		"country": "UK"
 	}
-}
+]
 ```
 
 ### Get Author by ID
@@ -319,18 +240,11 @@ curl -X GET "http://localhost:8001/api/library/authors/1/"
 
 ```json
 {
-	"data": {
-		"id": 1,
-		"name": "Douglas Adams",
-		"birth_date": "1952-03-11",
-		"death_date": "2001-05-11",
-		"country": "UK",
-		"created_at": "2024-07-25T10:00:00Z",
-		"updated_at": "2024-07-25T10:00:00Z"
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
+	"id": 1,
+	"name": "Douglas Adams",
+	"birth_date": "1952-03-11",
+	"death_date": "2001-05-11",
+	"country": "UK"
 }
 ```
 
@@ -403,26 +317,26 @@ curl -X GET "http://localhost:8001/api/library/authors/books/1/"
 
 ```json
 {
-	"data": {
-		"id": 1,
-		"name": "Douglas Adams",
-		"birth_date": "1952-03-11",
-		"death_date": "2001-05-11",
-		"country": "UK",
-		"books": [
-			{
+	"id": 1,
+	"name": "Douglas Adams",
+	"birth_date": "1952-03-11",
+	"death_date": "2001-05-11",
+	"country": "UK",
+	"books": [
+		{
+			"id": 1,
+			"title": "The Hitchhiker's Guide to the Galaxy",
+			"author": {
 				"id": 1,
-				"title": "The Hitchhiker's Guide to the Galaxy",
-				"isbn": "9780345391803",
-				"published_date": "1979-10-12"
-			}
-		],
-		"created_at": "2024-07-25T10:00:00Z",
-		"updated_at": "2024-07-25T10:00:00Z"
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
+				"name": "Douglas Adams",
+				"birth_date": "1952-03-11",
+				"death_date": "2001-05-11",
+				"country": "UK"
+			},
+			"publish_date": "1979-10-12",
+			"isbn": "9780345391803"
+		}
+	]
 }
 ```
 
@@ -444,17 +358,12 @@ curl -X GET "http://localhost:8001/api/library/openlibrary/isbn/9780345391803/"
 
 ```json
 {
-	"data": {
-		"title": "The Hitchhiker's Guide to the Galaxy",
-		"authors": ["Douglas Adams"],
-		"publish_date": "1979",
-		"number_of_pages": 123,
-		"cover_url": "https://covers.openlibrary.org/b/id/1234567-M.jpg",
-		"openlibrary_key": "OL7353617M"
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
+	"title": "The Hitchhiker's Guide to the Galaxy",
+	"authors": ["Douglas Adams"],
+	"publish_date": "1979",
+	"number_of_pages": 123,
+	"cover_url": "https://covers.openlibrary.org/b/id/1234567-M.jpg",
+	"openlibrary_key": "OL7353617M"
 }
 ```
 
@@ -470,144 +379,14 @@ Retrieves detailed book information from OpenLibrary using an OpenLibrary key.
 curl -X GET "http://localhost:8001/api/library/openlibrary/key/OL7353617M/"
 ```
 
-## 🔖 Bookmarks API
-
-### Get Bookmarks for Book
-
-**GET** `/api/library/books/{isbn}/bookmarks/`
-
-Returns all bookmarks for a specific book.
-
-#### Example Request
-
-```bash
-curl -X GET "http://localhost:8001/api/library/books/9780345391803/bookmarks/"
-```
-
-#### Example Response
-
-```json
-{
-	"data": [
-		{
-			"id": 1,
-			"page_number": 42,
-			"note": "The answer to life, the universe, and everything",
-			"created_at": "2024-07-25T10:00:00Z"
-		}
-	],
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
-}
-```
-
-### Create Bookmark
-
-**POST** `/api/library/books/{isbn}/bookmarks/`
-
-Creates a new bookmark for a book.
-
-#### Request Body
-
-```json
-{
-	"page_number": 42,
-	"note": "The answer to life, the universe, and everything"
-}
-```
-
-#### Example Request
-
-```bash
-curl -X POST "http://localhost:8001/api/library/books/9780345391803/bookmarks/" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "page_number": 42,
-    "note": "The answer to life, the universe, and everything"
-  }'
-```
-
-## 📊 Search API
-
-### Advanced Search
-
-**GET** `/api/library/search/`
-
-Performs advanced search with multiple filters.
-
-#### Query Parameters
-
-- `q` (optional): Search query
-- `author` (optional): Filter by author name
-- `genre` (optional): Filter by genre
-- `min_rating` (optional): Minimum rating
-- `max_rating` (optional): Maximum rating
-- `published_after` (optional): Books published after date
-- `published_before` (optional): Books published before date
-- `sort_by` (optional): Sort field
-- `sort_order` (optional): Sort order (asc, desc)
-- `page` (optional): Page number
-- `page_size` (optional): Items per page
-
-#### Example Request
-
-```bash
-curl -X GET "http://localhost:8001/api/library/search/?q=science fiction&author=Douglas&sort_by=title"
-```
-
-### Search Suggestions
-
-**GET** `/api/library/search/suggestions/`
-
-Returns search suggestions based on partial input.
-
-#### Query Parameters
-
-- `q` (required): Partial search query (minimum 2 characters)
-
-#### Example Request
-
-```bash
-curl -X GET "http://localhost:8001/api/library/search/suggestions/?q=hitch"
-```
-
-#### Example Response
-
-```json
-{
-	"data": {
-		"suggestions": [
-			"The Hitchhiker's Guide to the Galaxy",
-			"Hitchhiker's Guide to the Galaxy",
-			"Hitchhiker's Guide"
-		]
-	},
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
-}
-```
-
 ## 🔧 Error Responses
 
 ### Validation Error
 
 ```json
 {
-	"errors": [
-		{
-			"field": "title",
-			"message": "This field is required."
-		},
-		{
-			"field": "isbn",
-			"message": "Enter a valid ISBN."
-		}
-	],
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
+	"title": ["This field is required."],
+	"isbn": ["Enter a valid ISBN."]
 }
 ```
 
@@ -615,14 +394,7 @@ curl -X GET "http://localhost:8001/api/library/search/suggestions/?q=hitch"
 
 ```json
 {
-	"errors": [
-		{
-			"message": "Book not found with ISBN: 9780000000000"
-		}
-	],
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
+	"detail": "Not found."
 }
 ```
 
@@ -630,32 +402,13 @@ curl -X GET "http://localhost:8001/api/library/search/suggestions/?q=hitch"
 
 ```json
 {
-	"errors": [
-		{
-			"message": "Internal server error"
-		}
-	],
-	"meta": {
-		"timestamp": "2024-07-25T12:00:00Z"
-	}
+	"detail": "Internal server error"
 }
 ```
 
 ## 📝 Rate Limiting
 
-The API implements rate limiting to prevent abuse:
-
-- **Default Limit**: 1000 requests per hour per IP
-- **Search Endpoints**: 100 requests per hour per IP
-- **External API Calls**: 50 requests per hour per IP
-
-Rate limit headers are included in responses:
-
-```
-X-RateLimit-Limit: 1000
-X-RateLimit-Remaining: 999
-X-RateLimit-Reset: 1640995200
-```
+Currently, the API does not implement rate limiting. Future versions will include rate limiting for abuse prevention.
 
 ## 🔐 Authentication
 
@@ -700,15 +453,12 @@ class SophiaClient:
         self.base_url = base_url
         self.session = requests.Session()
 
-    def get_books(self, page=1, page_size=20):
-        response = self.session.get(f"{self.base_url}books/", params={
-            "page": page,
-            "page_size": page_size
-        })
+    def get_books(self):
+        response = self.session.get(f"{self.base_url}books/")
         return response.json()
 
-    def get_book(self, isbn):
-        response = self.session.get(f"{self.base_url}books/{isbn}/")
+    def get_book_by_isbn(self, isbn):
+        response = self.session.get(f"{self.base_url}books/isbn/{isbn}/")
         return response.json()
 
     def create_book(self, book_data):
@@ -724,15 +474,13 @@ class SophiaClient {
 		this.baseUrl = baseUrl;
 	}
 
-	async getBooks(page = 1, pageSize = 20) {
-		const response = await fetch(
-			`${this.baseUrl}books/?page=${page}&page_size=${pageSize}`
-		);
+	async getBooks() {
+		const response = await fetch(`${this.baseUrl}books/`);
 		return await response.json();
 	}
 
-	async getBook(isbn) {
-		const response = await fetch(`${this.baseUrl}books/${isbn}/`);
+	async getBookByIsbn(isbn) {
+		const response = await fetch(`${this.baseUrl}books/isbn/${isbn}/`);
 		return await response.json();
 	}
 

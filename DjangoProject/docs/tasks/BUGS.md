@@ -74,24 +74,7 @@ _No high priority issues currently known._
 
 ### Low Priority Issues
 
-#### 3. Book Cover Display Inconsistency
-
-- **Description**: Some book covers don't display consistently
-- **Environment**: All environments
-- **Steps to Reproduce**:
-  1. Add books with different cover formats
-  2. View book list
-  3. Notice inconsistent sizing
-- **Expected Behavior**: Consistent cover display
-- **Actual Behavior**: Varying cover sizes and formats
-- **Priority**: 🟢 Low
-- **Severity**: Cosmetic
-- **Status**: 📋 Backlog
-- **Assigned To**: TBD
-- **Notes**: CSS styling issue
-- **Created**: July 25, 2024
-
-#### 4. Date Format Inconsistency
+#### 3. Date Format Inconsistency
 
 - **Description**: Date formats vary across the application
 - **Environment**: All environments
@@ -138,8 +121,8 @@ _No security issues currently known._
 - **Critical**: 0 bugs
 - **High Priority**: 0 bugs
 - **Medium Priority**: 2 bugs
-- **Low Priority**: 2 bugs
-- **Total**: 4 bugs
+- **Low Priority**: 1 bug
+- **Total**: 3 bugs
 
 ### Status Distribution
 
@@ -218,4 +201,4 @@ _No security issues currently known._
 
 **Last Updated**: July 25, 2024
 **Next Review**: Weekly
-**Total Bugs**: 4 active
+**Total Bugs**: 3 active

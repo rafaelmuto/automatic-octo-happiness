@@ -63,7 +63,7 @@ gunicorn sophia.wsgi:application --bind 0.0.0.0:8001
 - **pip**: Python package installer
 - **git**: Version control
 - **nginx**: Web server (production)
-- **PostgreSQL**: Database (production, optional)
+- **SQLite**: Database (default, can be changed to PostgreSQL for production)
 
 ## 🔧 Development Deployment
 
@@ -158,7 +158,10 @@ pip install gunicorn psycopg2-binary
 #### 3. Database Configuration
 
 ```bash
-# Create database
+# For SQLite (default) - no additional setup needed
+# The database file will be created automatically
+
+# For PostgreSQL (optional)
 sudo -u postgres createdb sophia_db
 sudo -u postgres createuser sophia_user
 sudo -u postgres psql -c "ALTER USER sophia_user PASSWORD 'your_password';"
@@ -172,7 +175,10 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE sophia_db TO sophia_u
 cat > .env << EOF
 DEBUG=False
 SECRET_KEY=your-secret-key-here
-DATABASE_URL=postgresql://sophia_user:your_password@localhost/sophia_db
+# For SQLite (default)
+DATABASE_URL=sqlite:///db.sqlite3
+# For PostgreSQL (optional)
+# DATABASE_URL=postgresql://sophia_user:your_password@localhost/sophia_db
 ALLOWED_HOSTS=your-domain.com,www.your-domain.com
 STATIC_ROOT=/home/sophia/sophia-app/staticfiles
 EOF
@@ -291,6 +297,8 @@ sudo crontab -e
 
 ### Using Docker Compose
 
+The project already includes Docker configuration with `docker-compose.yaml` and `Dockerfile`.
+
 #### 1. Docker Configuration
 
 ```bash
@@ -302,6 +310,11 @@ docker-compose logs -f
 
 # Stop services
 docker-compose down
+
+# Using Makefile commands
+make docker-build
+make docker-run
+make docker-stop
 ```
 
 #### 2. Production Docker Compose
@@ -552,42 +565,48 @@ ls -la staticfiles/
 ### Database Backup
 
 ```bash
-# PostgreSQL backup
-pg_dump sophia_db > sophia_backup_$(date +%Y%m%d_%H%M%S).sql
-
-# SQLite backup
+# SQLite backup (default)
 cp db.sqlite3 db.sqlite3.backup.$(date +%Y%m%d_%H%M%S)
 
+# PostgreSQL backup (if using PostgreSQL)
+pg_dump sophia_db > sophia_backup_$(date +%Y%m%d_%H%M%S).sql
+```
+
 # Automated backup script
+
 cat > backup.sh << 'EOF'
 #!/bin/bash
-BACKUP_DIR="/home/sophia/backups"
-DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP*DIR="/home/sophia/backups"
+DATE=$(date +%Y%m%d*%H%M%S)
 mkdir -p $BACKUP_DIR
 
-# Database backup
-pg_dump sophia_db > $BACKUP_DIR/sophia_db_$DATE.sql
+# Database backup (SQLite)
+
+cp db.sqlite3 $BACKUP_DIR/sophia_db_$DATE.sqlite3
 
 # Application backup
+
 tar -czf $BACKUP_DIR/sophia_app_$DATE.tar.gz /home/sophia/sophia-app
 
 # Clean old backups (keep last 7 days)
-find $BACKUP_DIR -name "*.sql" -mtime +7 -delete
-find $BACKUP_DIR -name "*.tar.gz" -mtime +7 -delete
+
+find $BACKUP_DIR -name "_.sqlite3" -mtime +7 -delete
+find $BACKUP_DIR -name "_.tar.gz" -mtime +7 -delete
 EOF
 
 chmod +x backup.sh
-```
+
+````
 
 ### Recovery Procedures
 
 ```bash
-# Database recovery
-psql sophia_db < sophia_backup_20240725_120000.sql
+# Database recovery (SQLite)
+cp sophia_backup_20240725_120000.sqlite3 db.sqlite3
 
 # Application recovery
 tar -xzf sophia_app_20240725_120000.tar.gz -C /home/sophia/
-```
+````
 
 ## 🚨 Troubleshooting
 
@@ -679,3 +698,7 @@ python manage.py collectstatic --noinput --clear
 
 **Last Updated**: July 25, 2024
 **Version**: 1.0
+
+```
+
+```

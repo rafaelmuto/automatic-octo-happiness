@@ -131,12 +131,25 @@ bugs: ## Show known bugs
 	@echo "==========="
 	@head -20 docs/tasks/BUGS.md
 
-docs: ## Open documentation in browser
-	@echo "Opening documentation..."
-	@if command -v xdg-open > /dev/null; then \
-		xdg-open docs/README.md; \
-	elif command -v open > /dev/null; then \
-		open docs/README.md; \
-	else \
-		echo "Please open docs/README.md in your browser"; \
-	fi 
+docs: ## Show documentation index
+	@echo "Sophia Project Documentation"
+	@echo "=========================="
+	@echo ""
+	@echo "📁 Documentation Structure:"
+	@echo "  docs/README.md              - Main documentation index"
+	@echo "  docs/tasks/TODO.md          - Current tasks and priorities"
+	@echo "  docs/tasks/ROADMAP.md       - Long-term project roadmap"
+	@echo "  docs/tasks/FEATURES.md      - Feature requests and ideas"
+	@echo "  docs/tasks/BUGS.md          - Known bugs and issues"
+	@echo "  docs/development/ARCHITECTURE.md - System architecture"
+	@echo "  docs/development/API.md     - API documentation"
+	@echo "  docs/development/DEPLOYMENT.md - Deployment guides"
+	@echo ""
+	@echo "📖 Quick Access:"
+	@echo "  make tasks    - Show current tasks"
+	@echo "  make roadmap  - Show project roadmap"
+	@echo "  make features - Show feature requests"
+	@echo "  make bugs     - Show known bugs"
+	@echo ""
+	@echo "📄 Main Documentation:"
+	@head -10 docs/README.md 
