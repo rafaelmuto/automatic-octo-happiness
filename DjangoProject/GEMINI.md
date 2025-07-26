@@ -1086,187 +1086,46 @@ The main way you can interact with Sophia is through the web interface, running 
 - **Search Analytics**: Track search queries and popular searches
 - **Performance Optimized**: Database indexes and caching for SQLite
 
-# TODO
+# Documentation and Task Management
 
-## 🔴 High Priority Tasks
+## 📚 Project Documentation
 
-### 1. Advanced Search and Filtering Implementation [PLANNED]
+The Sophia project now has comprehensive documentation organized in the `docs/` directory:
 
-- **Status**: Not started
-- **Description**: Implement sophisticated search with filtering, sorting, and pagination
-- **Components**:
-  - Extend Book model with search-friendly fields (genre, language, reading_status, rating, tags, summary)
-  - Create search service layer with SQLite-compatible queries
-  - Implement API endpoints for advanced search
-  - Create frontend templates and views for search interface
-  - Add SQLite FTS5 full-text search capabilities
-  - Implement search analytics and suggestions
+### 📁 Documentation Structure
 
-### 2. Enhanced Book Model [PLANNED]
+- **[docs/README.md](docs/README.md)** - Main documentation index
+- **[docs/tasks/TODO.md](docs/tasks/TODO.md)** - Current tasks and priorities
+- **[docs/tasks/ROADMAP.md](docs/tasks/ROADMAP.md)** - Long-term project roadmap
+- **[docs/tasks/FEATURES.md](docs/tasks/FEATURES.md)** - Feature requests and ideas
+- **[docs/tasks/BUGS.md](docs/tasks/BUGS.md)** - Known bugs and issues
+- **[docs/development/ARCHITECTURE.md](docs/development/ARCHITECTURE.md)** - System architecture
+- **[docs/development/API.md](docs/development/API.md)** - API documentation
+- **[docs/development/DEPLOYMENT.md](docs/development/DEPLOYMENT.md)** - Deployment guides
 
-- **Status**: Not started
-- **Description**: Add missing fields to Book model for better categorization
-- **Components**:
-  - Add genre, language, reading_status, rating, tags, summary fields
-  - Create database migrations
-  - Update forms and serializers
-  - Add database indexes for performance
+### 🛠️ Automation and Development Tools
 
-### 3. Comprehensive Testing Suite [TODO]
+- **[README-AUTOMATION.md](README-AUTOMATION.md)** - Development automation guide
+- **[Makefile](Makefile)** - Common development commands
+- **[scripts/](scripts/)** - Automation scripts
 
-- **Status**: Minimal tests exist
-- **Description**: Create comprehensive test coverage
-- **Components**:
-  - Unit tests for models, views, and services
-  - API endpoint tests
-  - Integration tests
-  - Test data fixtures
-  - Coverage reporting
+## 🎯 Task Management
 
-### 4. User Authentication and Authorization [TODO]
+**Note**: All task management has been moved to the organized documentation structure. Please refer to:
 
-- **Status**: Not implemented
-- **Description**: Add user management and access control
-- **Components**:
-  - User registration and login
-  - User-specific book collections
-  - Permission-based access control
-  - User profiles and preferences
+- **[docs/tasks/TODO.md](docs/tasks/TODO.md)** for current tasks and priorities
+- **[docs/tasks/ROADMAP.md](docs/tasks/ROADMAP.md)** for long-term planning
+- **[docs/tasks/FEATURES.md](docs/tasks/FEATURES.md)** for feature requests
+- **[docs/tasks/BUGS.md](docs/tasks/BUGS.md)** for bug tracking
 
-## 🟡 Medium Priority Tasks
+### Quick Links
 
-### 5. Quote and Passage Management [TODO]
+- **Current Tasks**: [docs/tasks/TODO.md](docs/tasks/TODO.md)
+- **Project Roadmap**: [docs/tasks/ROADMAP.md](docs/tasks/ROADMAP.md)
+- **Feature Requests**: [docs/tasks/FEATURES.md](docs/tasks/FEATURES.md)
+- **Known Bugs**: [docs/tasks/BUGS.md](docs/tasks/BUGS.md)
 
-- **Status**: Not implemented
-- **Description**: Add functionality to manage quotes and passages from books
-- **Components**:
-  - Quote model with book reference
-  - Quote tagging and categorization
-  - Full-text search for quotes
-  - Quote management interface
-
-### 6. Enhanced Bookmark System [TODO]
-
-- **Status**: Basic model exists
-- **Description**: Improve bookmark functionality
-- **Components**:
-  - Bookmark categories and tags
-  - Bookmark search and filtering
-  - Bookmark export functionality
-  - Enhanced bookmark interface
-
-### 7. Data Import/Export Features [TODO]
-
-- **Status**: Not implemented
-- **Description**: Allow bulk import/export of book data
-- **Components**:
-  - CSV import/export functionality
-  - JSON import/export
-  - Data validation and error handling
-  - Import progress tracking
-
-### 8. Automated Cover Image Fetching [TODO]
-
-- **Status**: Not implemented
-- **Description**: Automatically fetch book covers from external APIs
-- **Components**:
-  - Google Books API integration
-  - OpenLibrary cover image integration
-  - Cover image storage and management
-  - Fallback cover generation
-
-## 🟢 Low Priority Tasks
-
-### 9. Library Dashboard and Analytics [TODO]
-
-- **Status**: Not implemented
-- **Description**: Create dashboard with library statistics
-- **Components**:
-  - Total books, authors, and genres statistics
-  - Reading progress tracking
-  - Most popular authors and genres
-  - Recently added items
-  - Reading goals and achievements
-
-### 10. Responsive Web Design [TODO]
-
-- **Status**: Basic templates exist
-- **Description**: Improve UI/UX for various screen sizes
-- **Components**:
-  - Mobile-responsive design
-  - Modern CSS framework integration
-  - Improved navigation and layout
-  - Dark/light theme support
-
-### 11. Hardware Integration Preparation [TODO]
-
-- **Status**: Not implemented
-- **Description**: Prepare for future hardware integration
-- **Components**:
-  - LED control interface
-  - RFID/barcode scanning support
-  - Hardware API endpoints
-  - Device management interface
-
-### 12. Performance Optimization [TODO]
-
-- **Status**: Not implemented
-- **Description**: Optimize application performance
-- **Components**:
-  - Database query optimization
-  - Caching implementation
-  - Static file optimization
-  - API response optimization
-
-## 📋 Technical Debt and Maintenance
-
-### 13. Code Quality Improvements [TODO]
-
-- **Status**: Basic structure exists
-- **Description**: Improve code quality and maintainability
-- **Components**:
-  - Code documentation
-  - Type hints implementation
-  - Error handling improvements
-  - Logging implementation
-
-### 14. Security Enhancements [TODO]
-
-- **Status**: Basic Django security
-- **Description**: Enhance application security
-- **Components**:
-  - Input validation
-  - CSRF protection
-  - Rate limiting
-  - Security headers
-
-### 15. Deployment and DevOps [TODO]
-
-- **Status**: Basic Docker setup exists
-- **Description**: Improve deployment and operations
-- **Components**:
-  - Production deployment configuration
-  - Environment-specific settings
-  - Monitoring and logging
-  - Backup and recovery procedures
-
-## 📊 Task Status Summary
-
-- **🔴 High Priority**: 4 tasks
-- **🟡 Medium Priority**: 4 tasks
-- **🟢 Low Priority**: 4 tasks
-- **📋 Technical Debt**: 3 tasks
-- **Total**: 15 tasks
-
-## 🎯 Next Steps
-
-1. Start with **Advanced Search and Filtering** implementation
-2. Extend the **Book model** with new fields
-3. Implement **comprehensive testing**
-4. Add **user authentication** system
-5. Continue with **quote management** features
-
-This task list provides a roadmap for developing Sophia from its current state to a fully-featured library management system.
+This reorganization provides better structure and maintainability for the project documentation and task management.
 
 ---
 

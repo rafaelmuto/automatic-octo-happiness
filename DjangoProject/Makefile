@@ -108,4 +108,35 @@ backup: ## Create database backup
 restore: ## Restore database from backup
 	@echo "Available backups:"
 	@ls -la db.sqlite3.backup.* 2>/dev/null || echo "No backups found"
-	@echo "To restore, run: cp db.sqlite3.backup.YYYYMMDD_HHMMSS db.sqlite3" 
+	@echo "To restore, run: cp db.sqlite3.backup.YYYYMMDD_HHMMSS db.sqlite3"
+
+# Task Management Commands
+tasks: ## Show current tasks
+	@echo "Current Tasks:"
+	@echo "=============="
+	@head -20 docs/tasks/TODO.md
+
+roadmap: ## Show project roadmap
+	@echo "Project Roadmap:"
+	@echo "================"
+	@head -20 docs/tasks/ROADMAP.md
+
+features: ## Show feature requests
+	@echo "Feature Requests:"
+	@echo "================="
+	@head -20 docs/tasks/FEATURES.md
+
+bugs: ## Show known bugs
+	@echo "Known Bugs:"
+	@echo "==========="
+	@head -20 docs/tasks/BUGS.md
+
+docs: ## Open documentation in browser
+	@echo "Opening documentation..."
+	@if command -v xdg-open > /dev/null; then \
+		xdg-open docs/README.md; \
+	elif command -v open > /dev/null; then \
+		open docs/README.md; \
+	else \
+		echo "Please open docs/README.md in your browser"; \
+	fi 
