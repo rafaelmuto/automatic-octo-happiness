@@ -1,0 +1,62 @@
+# API Development Rules
+
+## REST API Standards
+
+- Use proper HTTP status codes
+- Implement consistent error responses
+- Use Django REST Framework serializers
+- Validate input data thoroughly
+- Implement proper pagination for list endpoints
+
+## Endpoint Naming
+
+- Use plural nouns for resources
+- Use kebab-case for URLs
+- Include versioning in API URLs
+- Use descriptive endpoint names
+
+## Response Format
+
+```json
+{
+  "data": {...},
+  "meta": {
+    "pagination": {...},
+    "timestamp": "..."
+  },
+  "errors": [...]
+}
+```
+
+## Authentication & Security
+
+- Implement proper authentication
+- Use Django's CSRF protection
+- Validate all user inputs
+- Implement rate limiting for API endpoints
+
+## Serializer Best Practices
+
+- Use ModelSerializer for CRUD operations
+- Implement custom serializers for complex logic
+- Validate data at serializer level
+- Use SerializerMethodField for computed values
+
+## Error Handling
+
+- Return consistent error formats
+- Use appropriate HTTP status codes
+- Provide meaningful error messages
+- Log API errors for debugging
+
+## Documentation
+
+- Document all API endpoints
+- Include request/response examples
+- Specify required and optional fields
+- Document authentication requirements
+  description:
+  globs:
+  alwaysApply: false
+
+---

@@ -7,7 +7,7 @@ source .venv/bin/activate
 python manage.py migrate
 
 # Run collectstatic
-# python manage.py collectstatic --noinput
+python manage.py collectstatic --noinput
 
 # Run the development server
 python manage.py runserver 8001

@@ -1,0 +1,170 @@
+# Sophia Project Automation Hub
+
+## Quick Commands
+
+Use these commands in Cursor's command palette or terminal:
+
+### Development Setup
+
+- `./scripts/setup-dev.sh` - Setup development environment
+- `./scripts/code-quality.sh` - Run code quality checks
+- `python manage.py runserver` - Start development server
+- `python manage.py shell` - Open Django shell
+
+### Database Operations
+
+- `python manage.py makemigrations` - Create new migrations
+- `python manage.py migrate` - Apply migrations
+- `python manage.py createsuperuser` - Create admin user
+- `python manage.py collectstatic` - Collect static files
+
+### Testing & Quality
+
+- `python manage.py test` - Run all tests
+- `ruff check .` - Run linter
+- `ruff format .` - Format code
+- `python manage.py check` - Check Django configuration
+
+### Feature Development
+
+- Use `@new-feature` instruction for new features
+- Use `@new-api` instruction for API endpoints
+- Use `@new-model` instruction for Django models
+
+## File Structure
+
+```
+.cursor/
+├── rules/
+│   ├── project-structure.mdc      # Project overview and structure
+│   ├── development-workflow.mdc   # Code quality and best practices
+│   ├── api-development.mdc        # API development standards
+│   └── database-rules.mdc         # Database design rules
+├── instructions/
+│   ├── new-feature.mdc           # New feature development guide
+│   ├── api-endpoint.mdc          # API endpoint creation guide
+│   └── model-creation.mdc        # Django model creation guide
+├── templates/
+│   ├── feature-request.md        # Feature request template
+│   └── bug-report.md             # Bug report template
+├── snippets/                     # Custom code snippets
+└── automation-hub.mdc            # This file
+
+scripts/
+├── setup-dev.sh                  # Development environment setup
+└── code-quality.sh               # Code quality checks
+```
+
+## Usage Examples
+
+### Creating a New Book Feature
+
+1. Use `@new-feature` instruction
+2. Follow the step-by-step guide
+3. Use `@new-model` for Book model extensions
+4. Use `@new-api` for book API endpoints
+5. Run `./scripts/code-quality.sh` to check your work
+
+### Adding Search Functionality
+
+1. Reference the search implementation in GEMINI.md
+2. Use `@new-api` for search endpoints
+3. Use `@new-feature` for search views
+4. Follow the advanced search guide
+
+### Database Changes
+
+1. Use `@new-model` instruction
+2. Create migrations: `python manage.py makemigrations`
+3. Apply migrations: `python manage.py migrate`
+4. Test changes: `python manage.py test`
+
+## Common Workflows
+
+### Daily Development
+
+```bash
+# Start development
+./scripts/setup-dev.sh
+python manage.py runserver
+
+# During development
+./scripts/code-quality.sh  # Before committing
+python manage.py test      # After changes
+```
+
+### Adding New Models
+
+1. Use `@new-model` instruction
+2. Create model in appropriate file
+3. Add to admin.py
+4. Create migrations
+5. Update forms and serializers
+6. Write tests
+
+### Adding API Endpoints
+
+1. Use `@new-api` instruction
+2. Create serializer
+3. Create API view
+4. Add URL pattern
+5. Write tests
+
+### Code Review Process
+
+1. Run `./scripts/code-quality.sh`
+2. Ensure all tests pass
+3. Check for security issues
+4. Verify migrations are up to date
+5. Review code formatting
+
+## Troubleshooting
+
+### Common Issues
+
+- **Virtual environment not found**: Run `./scripts/setup-dev.sh`
+- **Migration errors**: Check model changes and run `python manage.py makemigrations`
+- **Import errors**: Ensure virtual environment is activated
+- **Test failures**: Check test data and model relationships
+
+### Getting Help
+
+- Check GEMINI.md for detailed project information
+- Use the instruction files for step-by-step guides
+- Follow the rules files for best practices
+- Run code quality checks to identify issues
+
+## Best Practices
+
+### Code Organization
+
+- Follow Django's MVT pattern
+- Keep related functionality together
+- Use appropriate app structure
+- Separate concerns (models, views, services)
+
+### Testing
+
+- Write tests for all new functionality
+- Use Django's TestCase for database tests
+- Mock external API calls
+- Aim for high code coverage
+
+### Documentation
+
+- Update GEMINI.md for major changes
+- Document API endpoints
+- Keep README current
+- Comment complex logic
+
+### Git Workflow
+
+- Use descriptive commit messages
+- Create feature branches
+- Test before committing
+- Update requirements.txt when needed
+  description:
+  globs:
+  alwaysApply: false
+
+---

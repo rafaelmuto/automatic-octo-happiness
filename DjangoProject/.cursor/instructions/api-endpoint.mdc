@@ -1,0 +1,124 @@
+# API Endpoint Creation Guide
+
+## Required Files to Update
+
+1. `library/serializers.py` - Add serializer
+2. `library/api/` - Add API view
+3. `library/api_urls.py` - Add URL pattern
+4. `library/tests.py` - Add tests
+
+## Serializer Template
+
+```python
+from rest_framework import serializers
+from .models import YourModel
+
+class YourModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = YourModel
+        fields = ['id', 'field1', 'field2']
+        read_only_fields = ['id']
+
+class YourModelDetailSerializer(serializers.ModelSerializer):
+    # For detailed views with nested data
+    class Meta:
+        model = YourModel
+        fields = '__all__'
+```
+
+## API View Template
+
+```python
+from rest_framework import generics, status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .models import YourModel
+from .serializers import YourModelSerializer
+
+class YourModelListAPIView(generics.ListCreateAPIView):
+    queryset = YourModel.objects.all()
+    serializer_class = YourModelSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        # Add filtering logic here
+        return YourModel.objects.all()
+
+class YourModelDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = YourModel.objects.all()
+    serializer_class = YourModelSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
+
+    def perform_update(self, serializer):
+        serializer.save(updated_by=self.request.user)
+```
+
+## URL Pattern Template
+
+```python
+from django.urls import path
+from .api import your_model_api
+
+urlpatterns += [
+    path('your-model/', your_model_api.YourModelListAPIView.as_view(), name='your-model-list'),
+    path('your-model/<int:id>/', your_model_api.YourModelDetailAPIView.as_view(), name='your-model-detail'),
+]
+```
+
+## Testing Template
+
+```python
+from django.test import TestCase
+from rest_framework.test import APITestCase
+from rest_framework import status
+from .models import YourModel
+
+class YourModelAPITestCase(APITestCase):
+    def setUp(self):
+        # Create test data
+        self.your_model = YourModel.objects.create(
+            field1='test_value',
+            field2='test_value2'
+        )
+
+    def test_list_your_model(self):
+        response = self.client.get('/api/library/your-model/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+
+    def test_create_your_model(self):
+        data = {
+            'field1': 'new_value',
+            'field2': 'new_value2'
+        }
+        response = self.client.post('/api/library/your-model/', data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+```
+
+## Common Patterns for Sophia
+
+### Book API Endpoints
+
+- Use ISBN as lookup field for books
+- Include author information in responses
+- Add search and filtering capabilities
+- Implement pagination for large datasets
+
+### Author API Endpoints
+
+- Include book count in author responses
+- Add author search functionality
+- Implement author statistics endpoints
+
+### Search API Endpoints
+
+- Use query parameters for search terms
+- Implement advanced filtering
+- Add sorting options
+- Return paginated results
+  description:
+  globs:
+  alwaysApply: false
+
+---

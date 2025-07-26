@@ -1,0 +1,169 @@
+{
+	"Django Model": {
+		"prefix": "django-model",
+		"body": [
+			"from django.db import models",
+			"from django.utils import timezone",
+			"from django.urls import reverse",
+			"",
+			"class ${1:ModelName}(models.Model):",
+			"    ${2:field} = models.${3:CharField}(${4:max_length=200})",
+			"    created_at = models.DateTimeField(auto_now_add=True)",
+			"    updated_at = models.DateTimeField(auto_now=True)",
+			"",
+			"    class Meta:",
+			"        ordering = ['-created_at']",
+			"        verbose_name = '${1:Model Name}'",
+			"        verbose_name_plural = '${1:Model Names}'",
+			"",
+			"    def __str__(self):",
+			"        return self.${2:field}",
+			"",
+			"    def get_absolute_url(self):",
+			"        return reverse('${1:model-name}-detail', kwargs={'pk': self.pk})"
+		],
+		"description": "Create a new Django model with standard fields"
+	},
+	"Django View": {
+		"prefix": "django-view",
+		"body": [
+			"from django.views.generic import ${1:ListView}",
+			"from django.contrib.auth.mixins import LoginRequiredMixin",
+			"from .models import ${2:Model}",
+			"",
+			"class ${3:ModelListView}(LoginRequiredMixin, ${1:ListView}):",
+			"    model = ${2:Model}",
+			"    template_name = '${4:library}/${5:model_list}.html'",
+			"    context_object_name = '${6:models}'",
+			"    paginate_by = 20",
+			"",
+			"    def get_queryset(self):",
+			"        return ${2:Model}.objects.all()"
+		],
+		"description": "Create a new Django class-based view"
+	},
+	"Django Form": {
+		"prefix": "django-form",
+		"body": [
+			"from django import forms",
+			"from .models import ${1:Model}",
+			"",
+			"class ${1:Model}Form(forms.ModelForm):",
+			"    class Meta:",
+			"        model = ${1:Model}",
+			"        fields = ['${2:field1}', '${3:field2}']",
+			"        widgets = {",
+			"            '${2:field1}': forms.TextInput(attrs={'class': 'form-control'}),",
+			"            '${3:field2}': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),",
+			"        }",
+			"",
+			"    def clean_${2:field1}(self):",
+			"        ${2:field1} = self.cleaned_data.get('${2:field1}')",
+			"        if len(${2:field1}) < 3:",
+			"            raise forms.ValidationError('${2:Field1} must be at least 3 characters long.')",
+			"        return ${2:field1}"
+		],
+		"description": "Create a new Django form"
+	},
+	"Django Serializer": {
+		"prefix": "django-serializer",
+		"body": [
+			"from rest_framework import serializers",
+			"from .models import ${1:Model}",
+			"",
+			"class ${1:Model}Serializer(serializers.ModelSerializer):",
+			"    class Meta:",
+			"        model = ${1:Model}",
+			"        fields = ['id', '${2:field1}', '${3:field2}', 'created_at', 'updated_at']",
+			"        read_only_fields = ['id', 'created_at', 'updated_at']"
+		],
+		"description": "Create a new Django REST Framework serializer"
+	},
+	"Django API View": {
+		"prefix": "django-api-view",
+		"body": [
+			"from rest_framework import generics",
+			"from rest_framework.permissions import IsAuthenticated",
+			"from .models import ${1:Model}",
+			"from .serializers import ${1:Model}Serializer",
+			"",
+			"class ${1:Model}ListAPIView(generics.ListCreateAPIView):",
+			"    queryset = ${1:Model}.objects.all()",
+			"    serializer_class = ${1:Model}Serializer",
+			"    permission_classes = [IsAuthenticated]",
+			"",
+			"class ${1:Model}DetailAPIView(generics.RetrieveUpdateDestroyAPIView):",
+			"    queryset = ${1:Model}.objects.all()",
+			"    serializer_class = ${1:Model}Serializer",
+			"    permission_classes = [IsAuthenticated]",
+			"    lookup_field = 'id'"
+		],
+		"description": "Create new Django REST Framework API views"
+	},
+	"Django Test": {
+		"prefix": "django-test",
+		"body": [
+			"from django.test import TestCase",
+			"from django.urls import reverse",
+			"from .models import ${1:Model}",
+			"",
+			"class ${1:Model}TestCase(TestCase):",
+			"    def setUp(self):",
+			"        self.${2:model} = ${1:Model}.objects.create(",
+			"            ${3:field}='${4:test_value}'",
+			"        )",
+			"",
+			"    def test_${1:model}_creation(self):",
+			"        self.assertEqual(self.${2:model}.${3:field}, '${4:test_value}')",
+			"        self.assertEqual(str(self.${2:model}), '${4:test_value}')",
+			"",
+			"    def test_${1:model}_url(self):",
+			"        url = self.${2:model}.get_absolute_url()",
+			"        self.assertIsNotNone(url)"
+		],
+		"description": "Create a new Django test case"
+	},
+	"Django Admin": {
+		"prefix": "django-admin",
+		"body": [
+			"from django.contrib import admin",
+			"from .models import ${1:Model}",
+			"",
+			"@admin.register(${1:Model})",
+			"class ${1:Model}Admin(admin.ModelAdmin):",
+			"    list_display = ['${2:field1}', '${3:field2}', 'created_at']",
+			"    list_filter = ['created_at', '${3:field2}']",
+			"    search_fields = ['${2:field1}', '${4:field3}']",
+			"    readonly_fields = ['created_at', 'updated_at']",
+			"",
+			"    fieldsets = (",
+			"        ('Basic Information', {",
+			"            'fields': ('${2:field1}', '${3:field2}', '${4:field3}')",
+			"        }),",
+			"        ('Metadata', {",
+			"            'fields': ('created_at', 'updated_at'),",
+			"            'classes': ('collapse',)",
+			"        }),",
+			"    )"
+		],
+		"description": "Create a new Django admin configuration"
+	},
+	"Django URL Pattern": {
+		"prefix": "django-url",
+		"body": [
+			"from django.urls import path",
+			"from . import views",
+			"",
+			"app_name = '${1:app_name}'",
+			"",
+			"urlpatterns = [",
+			"    path('${2:model}/', views.${3:ModelListView}.as_view(), name='${2:model}-list'),",
+			"    path('${2:model}/<int:pk>/', views.${4:ModelDetailView}.as_view(), name='${2:model}-detail'),",
+			"    path('${2:model}/create/', views.${5:ModelCreateView}.as_view(), name='${2:model}-create'),",
+			"    path('${2:model}/<int:pk>/update/', views.${6:ModelUpdateView}.as_view(), name='${2:model}-update'),",
+			"    path('${2:model}/<int:pk>/delete/', views.${7:ModelDeleteView}.as_view(), name='${2:model}-delete'),",
+			"]"
+		],
+		"description": "Create Django URL patterns"
+	}
+}

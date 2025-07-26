@@ -1,0 +1,74 @@
+# New Feature Development Workflow
+
+## Step 1: Analysis
+
+1. Understand the feature requirements
+2. Identify affected models, views, and templates
+3. Plan the database changes if needed
+4. Consider API endpoints if required
+
+## Step 2: Implementation Order
+
+1. **Models**: Create/update models and migrations
+2. **Forms**: Create Django forms for data input
+3. **Views**: Implement view logic
+4. **Templates**: Create/update templates
+5. **URLs**: Add URL patterns
+6. **Tests**: Write comprehensive tests
+7. **Documentation**: Update relevant docs
+
+## Step 3: Code Structure
+
+- Follow Django's MVT pattern
+- Use class-based views when appropriate
+- Implement proper error handling
+- Add logging for debugging
+
+## Step 4: Testing Checklist
+
+- [ ] Unit tests for models
+- [ ] Unit tests for views
+- [ ] Integration tests
+- [ ] Template rendering tests
+- [ ] URL routing tests
+
+## Step 5: Documentation
+
+- Update GEMINI.md if needed
+- Add API documentation if applicable
+- Update README if needed
+- Document any new configuration requirements
+
+## Common Patterns for Sophia
+
+### Adding a New Book Feature
+
+1. Update Book model if needed
+2. Create/update BookForm
+3. Add view logic in book_views.py
+4. Create/update templates
+5. Add URL patterns
+6. Write tests
+7. Update API if needed
+
+### Adding Search Functionality
+
+1. Create search service in services.py
+2. Add search views
+3. Create search templates
+4. Add search URLs
+5. Implement API endpoints
+6. Add search tests
+
+### Adding User-Specific Features
+
+1. Ensure user authentication is implemented
+2. Add user foreign key to models
+3. Filter views by user
+4. Add user-specific templates
+5. Implement proper permissions
+   description:
+   globs:
+   alwaysApply: false
+
+---

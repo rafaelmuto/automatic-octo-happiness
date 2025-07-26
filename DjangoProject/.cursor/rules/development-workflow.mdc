@@ -1,0 +1,50 @@
+# Development Workflow Rules
+
+## Code Quality Standards
+
+- Always use type hints in Python functions
+- Follow PEP 8 style guidelines
+- Use meaningful variable and function names
+- Add docstrings to all classes and functions
+- Keep functions under 20 lines when possible
+
+## Django Best Practices
+
+- Use Django's built-in form validation
+- Implement proper error handling in views
+- Use Django's ORM efficiently (avoid N+1 queries)
+- Follow Django's naming conventions
+- Use Django's built-in security features
+
+## Testing Requirements
+
+- Write tests for all new functionality
+- Use Django's TestCase for database tests
+- Mock external API calls in tests
+- Aim for at least 80% code coverage
+
+## Git Workflow
+
+- Use descriptive commit messages
+- Create feature branches for new development
+- Test before committing
+- Update requirements.txt when adding dependencies
+
+## File Organization
+
+- Keep related functionality together
+- Use appropriate Django app structure
+- Separate concerns (models, views, services)
+- Follow the established project structure
+
+## Error Handling
+
+- Always handle exceptions gracefully
+- Log errors appropriately
+- Provide meaningful error messages to users
+- Use Django's built-in error handling mechanisms
+  description:
+  globs:
+  alwaysApply: false
+
+---

@@ -1,0 +1,157 @@
+# Django Model Creation Guide
+
+## Model Structure Template
+
+```python
+from django.db import models
+from django.utils import timezone
+from django.urls import reverse
+
+class YourModel(models.Model):
+    # Basic fields
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
+
+    # Relationships
+    author = models.ForeignKey('Author', on_delete=models.CASCADE)
+
+    # Metadata
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    # Meta options
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['title']),
+            models.Index(fields=['created_at']),
+        ]
+        verbose_name = 'Your Model'
+        verbose_name_plural = 'Your Models'
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('your-model-detail', kwargs={'pk': self.pk})
+```
+
+## Required Steps
+
+1. Create model in appropriate file
+2. Add to admin.py
+3. Create and run migrations
+4. Update forms.py if needed
+5. Update serializers.py if needed
+6. Write tests
+
+## Admin Registration Template
+
+```python
+from django.contrib import admin
+from .models import YourModel
+
+@admin.register(YourModel)
+class YourModelAdmin(admin.ModelAdmin):
+    list_display = ['title', 'author', 'created_at']
+    list_filter = ['created_at', 'author']
+    search_fields = ['title', 'description']
+    readonly_fields = ['created_at', 'updated_at']
+
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('title', 'description', 'author')
+        }),
+        ('Metadata', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+```
+
+## Form Template
+
+```python
+from django import forms
+from .models import YourModel
+
+class YourModelForm(forms.ModelForm):
+    class Meta:
+        model = YourModel
+        fields = ['title', 'description', 'author']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'author': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        if len(title) < 3:
+            raise forms.ValidationError("Title must be at least 3 characters long.")
+        return title
+```
+
+## Serializer Template
+
+```python
+from rest_framework import serializers
+from .models import YourModel
+
+class YourModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = YourModel
+        fields = ['id', 'title', 'description', 'author', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'created_at', 'updated_at']
+```
+
+## Test Template
+
+```python
+from django.test import TestCase
+from django.urls import reverse
+from .models import YourModel
+
+class YourModelTestCase(TestCase):
+    def setUp(self):
+        self.your_model = YourModel.objects.create(
+            title='Test Title',
+            description='Test Description'
+        )
+
+    def test_your_model_creation(self):
+        self.assertEqual(self.your_model.title, 'Test Title')
+        self.assertEqual(str(self.your_model), 'Test Title')
+
+    def test_your_model_url(self):
+        url = self.your_model.get_absolute_url()
+        self.assertIsNotNone(url)
+```
+
+## Common Patterns for Sophia
+
+### Book Model Extensions
+
+- Add genre, language, reading_status fields
+- Include rating and tags
+- Add summary and notes fields
+- Implement bookmark relationships
+
+### Author Model Extensions
+
+- Add biography and photo fields
+- Include social media links
+- Add nationality and birth/death dates
+- Implement book count methods
+
+### User-Specific Models
+
+- Add user foreign key
+- Include user-specific metadata
+- Implement user permissions
+- Add user preferences
+  description:
+  globs:
+  alwaysApply: false
+
+---

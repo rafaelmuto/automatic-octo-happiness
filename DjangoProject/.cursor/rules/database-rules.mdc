@@ -1,0 +1,61 @@
+# Database Design Rules
+
+## Model Design
+
+- Use meaningful field names
+- Add proper indexes for frequently queried fields
+- Use appropriate field types and constraints
+- Implement proper relationships
+- Add created_at and updated_at timestamps
+
+## Migration Best Practices
+
+- Create migrations for all model changes
+- Test migrations on development data
+- Use reversible migrations when possible
+- Document complex migrations
+
+## Query Optimization
+
+- Use select_related() and prefetch_related()
+- Avoid N+1 query problems
+- Use database indexes effectively
+- Monitor query performance
+
+## Field Types and Constraints
+
+- Use CharField for short text (max_length required)
+- Use TextField for long text content
+- Use IntegerField for whole numbers
+- Use DecimalField for precise decimal numbers
+- Use BooleanField for true/false values
+- Use DateField for dates only
+- Use DateTimeField for dates with time
+- Use ForeignKey for one-to-many relationships
+- Use ManyToManyField for many-to-many relationships
+
+## Model Meta Options
+
+- Always define ordering if needed
+- Add indexes for frequently queried fields
+- Use verbose_name and verbose_name_plural
+- Set db_table if custom table name needed
+
+## Validation
+
+- Use model validators for complex validation
+- Implement clean() method for cross-field validation
+- Use unique constraints appropriately
+- Validate data at model level
+
+## Performance Considerations
+
+- Use database indexes strategically
+- Avoid storing redundant data
+- Use appropriate field types for data size
+- Consider database partitioning for large tables
+  description:
+  globs:
+  alwaysApply: false
+
+---
