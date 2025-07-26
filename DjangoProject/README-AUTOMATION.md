@@ -56,6 +56,7 @@ make quality
 
 scripts/
 ├── setup-dev.sh             # Development environment setup
+├── start-dev.sh             # Development environment start
 └── code-quality.sh          # Code quality checks
 
 Makefile                     # Common development tasks

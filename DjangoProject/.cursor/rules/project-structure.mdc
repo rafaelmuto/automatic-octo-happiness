@@ -1,7 +1,3 @@
----
-alwaysApply: true
----
-
 # Django Project Structure Guide
 
 ## Project Overview
@@ -14,6 +10,119 @@ alwaysApply: true
   - SQLite (default DB)
   - Django REST Framework (API)
 
-## ! IMPORTANT !
+## 📁 Current Project Structure
 
-for futher information and instructions refer to [GEMINI.md](mdc:../GEMINI.md).
+```
+DjangoProject/
+├── sophia/                     # Main Django project
+│   ├── settings.py            # Project configuration
+│   ├── urls.py                # Main URL routing
+│   └── wsgi.py                # WSGI configuration
+├── library/                   # Main Django app
+│   ├── models/                # Data models
+│   │   ├── author.py          # Author model
+│   │   ├── book.py            # Book model
+│   │   └── bookmark.py        # Bookmark model
+│   ├── views/                 # View logic
+│   │   ├── author_views.py
+│   │   ├── book_views.py
+│   │   └── data_management_views.py
+│   ├── api/                   # API endpoints
+│   │   ├── author_api.py
+│   │   ├── book_api.py
+│   │   └── openlibrary_api.py
+│   ├── templates/             # HTML templates
+│   ├── static/                # Static files (CSS, JS)
+│   ├── forms.py               # Django forms
+│   ├── serializers.py         # DRF serializers
+│   └── services.py            # Business logic
+├── docs/                      # Project documentation
+│   ├── tasks/                 # Task management
+│   │   ├── TODO.md            # Current tasks and priorities
+│   │   ├── ROADMAP.md         # Long-term roadmap
+│   │   ├── FEATURES.md        # Feature requests (currently empty)
+│   │   └── BUGS.md            # Known bugs (currently empty)
+│   ├── development/           # Development documentation
+│   │   └── API.md             # API documentation
+│   └── README.md              # Documentation index
+├── scripts/                   # Automation scripts
+│   ├── setup-dev.sh           # Development environment setup
+│   ├── code-quality.sh        # Code quality checks
+│   └── start-dev.sh           # Start development server
+├── .cursor/                   # Cursor IDE configuration
+│   ├── rules/                 # Cursor rules
+│   ├── instructions/          # Step-by-step guides
+│   ├── templates/             # Standardized templates
+│   └── snippets/              # Code snippets
+├── Makefile                   # Development automation
+├── README-AUTOMATION.md       # Automation guide
+├── GEMINI.md                  # Main project documentation
+├── requirements.txt           # Python dependencies
+├── docker-compose.yaml        # Docker configuration
+├── Dockerfile                 # Docker image definition
+└── manage.py                  # Django management script
+```
+
+## 🎯 Key Features
+
+### Core Functionality
+
+- **Book Management**: Add, edit, delete, and search books
+- **Author Management**: Manage author information and relationships
+- **API Endpoints**: RESTful API for programmatic access
+- **OpenLibrary Integration**: Fetch book metadata from external API
+
+### Development Tools
+
+- **Automation Scripts**: Setup, code quality, and development tools
+- **Cursor Rules**: IDE automation and guidelines
+- **Documentation**: Organized task management and development guides
+- **Docker Support**: Containerized deployment
+
+### Current Status
+
+- **Models**: Author, Book, Bookmark (basic structure)
+- **API**: REST endpoints for books and authors
+- **Templates**: Basic CRUD interfaces
+- **Documentation**: Organized structure with empty task lists ready for content
+
+## 📋 Documentation Organization
+
+### Task Management (`docs/tasks/`)
+
+- **TODO.md**: Current tasks and immediate priorities
+- **ROADMAP.md**: Long-term project milestones
+- **FEATURES.md**: Feature requests and ideas (currently empty)
+- **BUGS.md**: Known bugs and issues (currently empty)
+
+### Development (`docs/development/`)
+
+- **API.md**: API documentation and endpoint reference
+
+### Automation
+
+- **README-AUTOMATION.md**: Complete automation guide
+- **Makefile**: Common development commands
+- **Scripts/**: Executable automation scripts
+
+## 🚀 Quick Start
+
+```bash
+# Setup development environment
+./scripts/setup-dev.sh
+
+# Start development server
+make dev
+
+# View documentation
+make docs
+```
+
+## 📚 Important References
+
+- **Main Documentation**: [GEMINI.md](GEMINI.md)
+- **Automation Guide**: [README-AUTOMATION.md](README-AUTOMATION.md)
+- **Current Tasks**: [docs/tasks/TODO.md](docs/tasks/TODO.md)
+- **API Documentation**: [docs/development/API.md](docs/development/API.md)
+
+---

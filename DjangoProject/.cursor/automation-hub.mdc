@@ -129,7 +129,6 @@ python manage.py test      # After changes
 
 ### Getting Help
 
-- Check GEMINI.md for detailed project information
 - Use the instruction files for step-by-step guides
 - Follow the rules files for best practices
 - Run code quality checks to identify issues

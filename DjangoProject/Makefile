@@ -29,7 +29,7 @@ makemigrations: ## Create migrations
 
 run: ## Run development server
 	@echo "Starting development server..."
-	@source .venv/bin/activate && python manage.py runserver
+	@source .venv/bin/activate && python manage.py runserver 8001
 
 shell: ## Open Django shell
 	@echo "Opening Django shell..."
@@ -79,10 +79,6 @@ docker-stop: ## Stop Docker container
 	@echo "Stopping Docker container..."
 	@docker compose down
 
-dev: ## Start development environment (setup + run)
-	@make setup
-	@make run
-
 full-test: ## Run full test suite with quality checks
 	@make quality
 	@make test
@@ -130,26 +126,3 @@ bugs: ## Show known bugs
 	@echo "Known Bugs:"
 	@echo "==========="
 	@head -20 docs/tasks/BUGS.md
-
-docs: ## Show documentation index
-	@echo "Sophia Project Documentation"
-	@echo "=========================="
-	@echo ""
-	@echo "📁 Documentation Structure:"
-	@echo "  docs/README.md              - Main documentation index"
-	@echo "  docs/tasks/TODO.md          - Current tasks and priorities"
-	@echo "  docs/tasks/ROADMAP.md       - Long-term project roadmap"
-	@echo "  docs/tasks/FEATURES.md      - Feature requests and ideas"
-	@echo "  docs/tasks/BUGS.md          - Known bugs and issues"
-	@echo "  docs/development/ARCHITECTURE.md - System architecture"
-	@echo "  docs/development/API.md     - API documentation"
-	@echo "  docs/development/DEPLOYMENT.md - Deployment guides"
-	@echo ""
-	@echo "📖 Quick Access:"
-	@echo "  make tasks    - Show current tasks"
-	@echo "  make roadmap  - Show project roadmap"
-	@echo "  make features - Show feature requests"
-	@echo "  make bugs     - Show known bugs"
-	@echo ""
-	@echo "📄 Main Documentation:"
-	@head -10 docs/README.md 
