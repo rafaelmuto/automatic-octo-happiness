@@ -195,10 +195,9 @@ make test
 
 ### Getting Help
 
-1. Check the **GEMINI.md** file for detailed project information
-2. Use the instruction files for step-by-step guides
-3. Follow the rules files for best practices
-4. Run code quality checks to identify issues
+1. Use the instruction files for step-by-step guides
+2. Follow the rules files for best practices
+3. Run code quality checks to identify issues
 
 ## 📚 Best Practices
 
@@ -218,7 +217,6 @@ make test
 
 ### Documentation
 
-- Update GEMINI.md for major changes
 - Document API endpoints
 - Keep README current
 - Comment complex logic

@@ -32,7 +32,6 @@ docs/
 ### Automation
 
 - [Automation Guide](../README-AUTOMATION.md) - Development automation tools
-- [GEMINI Project Guide](../GEMINI.md) - Main project documentation
 
 ## 📋 Task Management Workflow
 
@@ -58,10 +57,9 @@ docs/
 
 ## 🚀 Getting Started
 
-1. **New to the project?** Start with [GEMINI.md](../GEMINI.md)
-2. **Setting up development?** See [README-AUTOMATION.md](../README-AUTOMATION.md)
-3. **Looking for tasks?** Check [TODO.md](tasks/TODO.md)
-4. **Planning features?** Review [ROADMAP.md](tasks/ROADMAP.md)
+1. **Setting up development?** See [README-AUTOMATION.md](../README-AUTOMATION.md)
+2. **Looking for tasks?** Check [TODO.md](tasks/TODO.md)
+3. **Planning features?** Review [ROADMAP.md](tasks/ROADMAP.md)
 
 ## 📝 Contributing to Documentation
 
@@ -76,7 +74,6 @@ docs/
 - **Project Repository**: [GitHub Repository]
 - **Issue Tracking**: [GitHub Issues]
 - **Automation Tools**: [README-AUTOMATION.md](../README-AUTOMATION.md)
-- **Main Project Guide**: [GEMINI.md](../GEMINI.md)
 
 ## 📊 Current Project Status
 
