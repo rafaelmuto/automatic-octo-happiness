@@ -1,8 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
     path('', views.base, name='base'),
-    path('sudoku/', views.SudokuListCreateView.as_view(), name='sudoku-list-create'),
-    path('sudoku/<int:pk>/', views.SudokuRetrieveUpdateDestroyView.as_view(), name='sudoku-retrieve-update-destroy'),
+    path('sudoku/', include('sudoku.urls')),
 ]
