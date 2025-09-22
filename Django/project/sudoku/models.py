@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+import re
 
 class Sudoku(models.Model):
     DIFFICULTY_CHOICES = [
@@ -31,9 +33,45 @@ class Sudoku(models.Model):
     
     def get_grid(self):
         """Convert string representation to 9x9 grid"""
-        return [self.puzzle[i:i+9] for i in range(0, 81, 9)]
+        return self._gridify_string(self.puzzle)
     
     def set_grid(self, grid):
         """Convert 9x9 grid to string representation"""
-        self.puzzle = ''.join([''.join(row) for row in grid])
+        self.puzzle = self._stringify_grid(grid)
     
+    @staticmethod
+    def _stringify_grid(grid: list) -> str:
+        stringfied_grid = ''
+        for row in grid:
+            for cell in row:
+                if type(cell) == int:
+                    stringfied_grid += str(cell)
+                else:
+                    stringfied_grid += cell
+        return stringfied_grid
+
+    @staticmethod
+    def _gridify_string(grid_string: str) -> list:
+        list = []
+        for i in range(9):
+            row = []
+            for j in range(9):
+                row.append(grid_string[i*9 + j])
+            list.append(row)
+        return list
+
+    def _is_valid_string(grid_string: str) -> bool:
+        pattern = r'^[0-9]{81}$'
+        return bool(re.match(pattern, grid_string))
+            
+
+    def _is_valid_grid(grid: list) -> bool:
+        if len(grid) != 9:
+            return False
+        for row in grid:
+            if len(row) != 9:
+                return False
+            for cell in row:
+                if cell not in range(1, 10):
+                    return False
+        return True
